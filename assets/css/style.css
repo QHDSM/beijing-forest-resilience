@@ -981,3 +981,22 @@ section { padding: 48px 0; }
 .teacher-response p { margin:0; font-size:12.5px; line-height:1.6; }
 @media(max-width:700px) { .teacher-response { display:block; } .teacher-response span { display:inline-block; margin-bottom:5px; } }
 
+/* 原路线与新路线并列展示 */
+.route-comparison { display:grid; grid-template-columns:minmax(220px, .68fr) minmax(0, 1.7fr); align-items:start; gap:24px; }
+.route-version { padding:14px 16px; margin-bottom:16px; background:#eee8dc; border-top:3px solid #a67a43; }
+.route-version span { font:700 10px var(--mono); letter-spacing:.1em; color:#8b6434; }
+.route-version h3 { margin:3px 0; font-size:18px; }
+.route-version p { margin:0; font-size:12px; color:#756f63; }
+.new-version { background:#e8f1ea; border-color:#317458; }
+.new-version span { color:#317458; }
+.old-step { background:#fffaf1; border:1px solid #e1d3bf; border-left:4px solid #af8249; padding:14px; font-size:13px; }
+.old-step b { color:#6e4b25; font-size:14px; }
+.old-step p { margin:6px 0; line-height:1.6; }
+.old-step small { color:#8b6a41; }
+.old-arrow { color:#a47b4c; padding:8px 12px; font-size:12px; }
+.old-note { font-size:12px; color:#806b54; line-height:1.65; }
+.route-comparison .diagram { width:100%; }
+.route-comparison .flow-fields { grid-template-columns:1fr; gap:7px; }
+.route-comparison .flow-fields b { display:inline; margin-right:9px; }
+@media(max-width:720px) { .route-comparison { grid-template-columns:1fr; } }
+
