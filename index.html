@@ -9,7 +9,7 @@
 <meta property="og:title" content="扰动与恢复视角下北京市森林韧性的遥感表征">
 <meta property="og:description" content="从数据、模型到产物与下一步用途，追踪森林韧性研究路线。">
 <meta property="og:type" content="website">
-<link rel="stylesheet" href="assets/css/style.css?v=flow3">
+<link rel="stylesheet" href="assets/css/style.css?v=flow4">
 <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231f5c45'/><path d='M22 72 L44 42 L58 58 L78 28' stroke='%23f7f6f1' stroke-width='7' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 </head>
@@ -152,21 +152,21 @@
 
 <!-- 03 技术路线 -->
 <section id="route"><div class="wrap">
-<div class="sec-head"><div class="sec-no">03</div><h2>技术路线</h2><p class="sec-sub">从遥感观测出发，追踪一次扰动及其恢复过程，最终回答森林韧性的区域差异与成因。以下为回应导师意见的拟实施方案。</p></div>
+<div class="sec-head"><div class="sec-no">03</div><h2>技术路线</h2><p class="sec-sub">从遥感观测出发，追踪一次扰动及其恢复过程，最终回答森林韧性的区域差异与成因。橙色标注对应老师的问题与具体改动；以下为拟实施方案。</p></div>
 <div class="diagram">
-<div class="flow-card"><span class="flow-number">01</span><div class="flow-content"><span class="flow-tag">DATA · 数据准备</span><h3>构建年度观测与森林范围</h3><div class="flow-fields"><p><b>输入</b>Landsat、CLCD、北京市界</p><p><b>方法</b>GEE 云掩膜、逐年合成与网格统一</p><p><b>产出</b>年度影像栈、逐年森林掩膜</p></div></div></div>
+<div class="flow-card"><span class="flow-number">01</span><div class="flow-content"><span class="flow-tag">DATA · 数据准备</span><h3>构建年度观测与森林范围</h3><div class="flow-fields"><p><b>输入</b>Landsat、CLCD、北京市界</p><p><b>方法</b>GEE 云掩膜、逐年合成与网格统一</p><p><b>产出</b>年度影像栈、逐年森林掩膜</p></div><div class="teacher-response"><span>回应老师</span><p>统计口径：以事件发生前的森林范围为分母，单独报告未受扰区域，避免把无变化直接视为高稳定。</p></div></div></div>
 <div class="flow-link"><span>年度影像 → 指数计算；森林掩膜 → 事件筛选</span></div>
-<div class="flow-card"><span class="flow-number">02</span><div class="flow-content"><span class="flow-tag">MODEL · 时序建模</span><h3>重建森林光谱变化轨迹</h3><div class="flow-fields"><p><b>输入</b>年度影像栈</p><p><b>方法</b>计算 NBR、TCG、TCW、TCB；LandTrendr 分段拟合</p><p><b>产出</b>逐年拟合轨迹、分段顶点</p></div></div></div>
+<div class="flow-card"><span class="flow-number">02</span><div class="flow-content"><span class="flow-tag">MODEL · 时序建模</span><h3>重建森林光谱变化轨迹</h3><div class="flow-fields"><p><b>输入</b>年度影像栈</p><p><b>方法</b>计算 NBR、TCG、TCW、TCB；LandTrendr 分段拟合</p><p><b>产出</b>逐年拟合轨迹、分段顶点</p></div><div class="teacher-response"><span>回应老师</span><p>问题 1 · 光谱能否代表碳汇？明确指数表征冠层状态，保留完整轨迹供恢复分析；碳相关解释交由 NPP 作独立参照。</p></div></div></div>
 <div class="flow-link"><span>拟合轨迹 + 事件前森林掩膜 → 识别扰动与恢复</span></div>
-<div class="flow-card"><span class="flow-number">03</span><div class="flow-content"><span class="flow-tag">EVENT · 过程重建</span><h3>配对同一次扰动与恢复</h3><div class="flow-fields"><p><b>输入</b>拟合轨迹、事件前森林范围</p><p><b>方法</b>统一方向，识别损失、低点、恢复及再扰动；未恢复标记删失</p><p><b>产出</b>各指数的扰动—恢复事件表</p></div></div></div>
+<div class="flow-card"><span class="flow-number">03</span><div class="flow-content"><span class="flow-tag">EVENT · 过程重建</span><h3>配对同一次扰动与恢复</h3><div class="flow-fields"><p><b>输入</b>拟合轨迹、事件前森林范围</p><p><b>方法</b>统一方向，识别损失、低点、恢复及再扰动；未恢复标记删失</p><p><b>产出</b>各指数的扰动—恢复事件表</p></div><div class="teacher-response"><span>回应老师</span><p>问题 3 · 原有 CRE/CSI 有何缺陷？将同一次损失与后续恢复配对，记录再次扰动与未恢复事件，避免把不相关线段相除。</p></div></div></div>
 <div class="flow-link"><span>事件年份与轨迹 → 跨指数匹配</span></div>
-<div class="flow-card"><span class="flow-number">04</span><div class="flow-content"><span class="flow-tag">ENSEMBLE · 一致性</span><h3>用多指数共同识别事件</h3><div class="flow-fields"><p><b>输入</b>四指数事件表</p><p><b>方法</b>检验 TCB 方向，在时间窗口内匹配并统计检出一致性</p><p><b>产出</b>集合事件表、一致性比例</p></div></div></div>
+<div class="flow-card"><span class="flow-number">04</span><div class="flow-content"><span class="flow-tag">ENSEMBLE · 一致性</span><h3>用多指数共同识别事件</h3><div class="flow-fields"><p><b>输入</b>四指数事件表</p><p><b>方法</b>检验 TCB 方向，在时间窗口内匹配并统计检出一致性</p><p><b>产出</b>集合事件表、一致性比例</p></div><div class="teacher-response"><span>回应老师</span><p>问题 2 · 专家权重依据不足怎么办？检验指数方向，以多指数事件一致性替代不透明的主观加权，并检验阈值敏感性。</p></div></div></div>
 <div class="flow-link"><span>事件基线、低点、恢复轨迹 → 计算韧性</span></div>
-<div class="flow-card"><span class="flow-number">05</span><div class="flow-content"><span class="flow-tag">METRICS · 韧性表征</span><h3>量化受损与恢复</h3><div class="flow-fields"><p><b>输入</b>集合事件表</p><p><b>方法</b>计算相对损失 RL、恢复时间 T90、恢复完整度 C10 与再扰动</p><p><b>产出</b>事件级指标表、指标栅格和删失标记</p></div></div></div>
+<div class="flow-card"><span class="flow-number">05</span><div class="flow-content"><span class="flow-tag">METRICS · 韧性表征</span><h3>量化受损与恢复</h3><div class="flow-fields"><p><b>输入</b>集合事件表</p><p><b>方法</b>计算相对损失 RL、恢复时间 T90、恢复完整度 C10 与再扰动</p><p><b>产出</b>事件级指标表、指标栅格和删失标记</p></div><div class="teacher-response"><span>回应老师</span><p>问题 7 · 怎样定义韧性？分别用受损程度、恢复时间、恢复完整度和再扰动刻画抵抗、恢复与持续过程；未扰动区域不赋韧性等级。</p></div></div></div>
 <div class="flow-link split-link"><span>事件指标分别进入区域分析与独立验证</span></div>
-<div class="flow-branches"><div class="flow-card"><span class="flow-number">06</span><div class="flow-content"><span class="flow-tag">ANALYSIS · 区域差异</span><h3>比较差异与关联因素</h3><div class="flow-fields"><p><b>输入</b>事件指标、分区、地形、气候及管理数据</p><p><b>方法</b>分区统计、生存分析与回归</p><p><b>产出</b>区域差异、因素关联及不确定性</p></div></div></div><div class="flow-card"><span class="flow-number">07</span><div class="flow-content"><span class="flow-tag">VALIDATION · 独立检验</span><h3>核查识别与恢复结果</h3><div class="flow-fields"><p><b>输入</b>事件指标、历史影像、MODIS NPP</p><p><b>方法</b>分层样本精度评价、尺度配对与敏感性分析</p><p><b>产出</b>精度表、NPP 对照、稳健性结果</p></div></div></div></div>
+<div class="flow-branches"><div class="flow-card"><span class="flow-number">06</span><div class="flow-content"><span class="flow-tag">ANALYSIS · 区域差异</span><h3>比较差异与关联因素</h3><div class="flow-fields"><p><b>输入</b>事件指标、分区、地形、气候及管理数据</p><p><b>方法</b>分区统计、生存分析与回归</p><p><b>产出</b>区域差异、因素关联及不确定性</p></div><div class="teacher-response"><span>回应老师</span><p>问题 4、5、6 · 区域差异在哪里，恢复快慢与什么有关？比较不同森林背景，以生存分析和回归检验立地、气候、管理等因素；关联不直接证明因果。</p></div></div></div><div class="flow-card"><span class="flow-number">07</span><div class="flow-content"><span class="flow-tag">VALIDATION · 独立检验</span><h3>核查识别与恢复结果</h3><div class="flow-fields"><p><b>输入</b>事件指标、历史影像、MODIS NPP</p><p><b>方法</b>分层样本精度评价、尺度配对与敏感性分析</p><p><b>产出</b>精度表、NPP 对照、稳健性结果</p></div><div class="teacher-response"><span>回应老师</span><p>问题 1、8 · 如何检验结果并借鉴参考论文？用历史影像评价事件识别、用 NPP 对照恢复过程，报告敏感性与局限；借鉴可解释、可验证的研究逻辑。</p></div></div></div></div>
 <div class="flow-link"><span>区域分析 + 验证结果 → 综合判断</span></div>
-<div class="flow-card final-card"><span class="flow-number">08</span><div class="flow-content"><span class="flow-tag">SYNTHESIS · 研究输出</span><h3>回答森林韧性问题</h3><div class="flow-fields"><p><b>输入</b>区域差异、影响因素关联、验证结果</p><p><b>方法</b>综合证据并报告不确定性</p><p><b>产出</b>韧性格局、研究报告与分区管理启示</p></div></div></div>
+<div class="flow-card final-card"><span class="flow-number">08</span><div class="flow-content"><span class="flow-tag">SYNTHESIS · 研究输出</span><h3>回答森林韧性问题</h3><div class="flow-fields"><p><b>输入</b>区域差异、影响因素关联、验证结果</p><p><b>方法</b>综合证据并报告不确定性</p><p><b>产出</b>韧性格局、研究报告与分区管理启示</p></div><div class="teacher-response"><span>回应老师</span><p>问题 4 · 如何形成有价值的结论？综合区域差异、因素分析与验证证据，形成可检验的解释和分区建议，不预设研究结果。</p></div></div></div>
 </div><p class="route-note">光谱指标表征冠层状态；NPP 用于生产力交叉参照，不能直接证明碳储量恢复。各项结果与阈值均需在实施中检验。</p>
 </div></section>
 
