@@ -975,3 +975,9 @@ section { padding: 48px 0; }
 .route-note { max-width:1040px; margin:18px auto 0; color:#6b7a72; font-size:12px; }
 @media(max-width:700px) { .flow-card { padding:14px; gap:10px; } .flow-number { flex-basis:30px; height:30px; line-height:30px; } .flow-fields,.flow-branches { grid-template-columns:1fr; } .flow-fields { gap:7px; } .flow-fields b { display:inline; margin-right:8px; } .flow-link { margin-left:14px; font-size:11px; } }
 
+/* 与导师意见的直接对应 */
+.teacher-response { display:flex; align-items:flex-start; gap:10px; margin-top:15px; padding:10px 12px; background:#fff5e8; border-left:3px solid #c4772b; color:#754516; }
+.teacher-response span { flex:none; padding:2px 7px; background:#efd6b4; color:#75400e; font-size:11px; font-weight:700; }
+.teacher-response p { margin:0; font-size:12.5px; line-height:1.6; }
+@media(max-width:700px) { .teacher-response { display:block; } .teacher-response span { display:inline-block; margin-bottom:5px; } }
+
