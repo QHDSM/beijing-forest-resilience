@@ -1000,3 +1000,20 @@ section { padding: 48px 0; }
 .route-comparison .flow-fields b { display:inline; margin-right:9px; }
 @media(max-width:720px) { .route-comparison { grid-template-columns:1fr; } }
 
+/* 同一环节内对照两版 */
+.unified-route { max-width: 1040px; margin: 0 auto; }
+.route-key { display:flex; flex-wrap:wrap; gap:20px; color:#8a6335; font-size:12px; margin:0 0 14px; }
+.route-key .key-new { color:#26704d; }
+.unified-card { background:#fff; border:1px solid #d8ded6; padding:20px 22px; box-shadow:0 3px 12px rgba(30,65,44,.04); }
+.unified-heading { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.unified-heading span { display:grid; place-items:center; width:34px; height:34px; background:#edf1e9; color:#406954; font:700 14px var(--mono); }
+.unified-heading h3 { margin:0; font-size:18px; }
+.unified-versions { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.version-old,.version-new { padding:12px 14px; font-size:13px; line-height:1.65; }
+.version-old { background:#fbf4e9; border-left:3px solid #ae8049; color:#684b2b; }
+.version-new { background:#eff7f1; border-left:3px solid #37805d; color:#315e46; }
+.version-old > b,.version-new > b { display:block; margin-bottom:4px; font-size:12px; }
+.version-old p,.version-new p { margin:0; }
+.unified-card .teacher-response { margin-top:12px; }
+@media(max-width:700px) { .unified-card { padding:14px; } .unified-versions { grid-template-columns:1fr; gap:8px; } }
+
