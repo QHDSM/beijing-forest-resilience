@@ -161,21 +161,25 @@
       <h2>技术路线：两版对照</h2>
       <p class="sec-sub">
         同一套数据，两种提问方式。V1 是 2026 年 6 月成稿的论文路线；
-        V2 是依据导师意见与本地复核结果重构后的现行方案。每一环节都标注了输入、工具、做法、模型、输出，以及交给下一环节的具体产物。
+        V2 是依据导师意见与本地复核结果重构后的待实施方案。每一环节都标注了输入、工具、做法、模型、输出，以及交给下一环节的具体产物。
       </p>
     </div>
 
     <div class="route-intro reveal">
-      <div class="tabs" role="tablist" aria-label="技术路线版本切换">
-        <button class="tab" role="tab" id="tab-v1" aria-controls="panel-v1" aria-selected="false" data-ver="v1" tabindex="-1">V1 · 原版（论文）</button>
-        <button class="tab" role="tab" id="tab-v2" aria-controls="panel-v2" aria-selected="true" data-ver="v2" tabindex="0">V2 · 重构版（现行）</button>
-      </div>
-      <p>切换查看两版路线的逐环节拆解；同一编号的环节可直接横向对比。</p>
+      <p><strong>同页对照：</strong>下面先对比关键环节，再依次展开两版。新版是为回应导师问题提出的待实施方案，参数、数据覆盖和结果仍需核验。</p>
+      <div class="table-wrap"><table><thead><tr><th>环节</th><th>V1 原论文</th><th>V2 新方案 · 回应的问题</th></tr></thead><tbody>
+      <tr><th>研究对象</th><td>全市分级统计，森林口径待核对</td><td>事件前森林掩膜 → 分清未扰动与受扰森林</td></tr>
+      <tr><th>时序模型</th><td>LandTrendr → 独立 gain / loss 的 mag、dur</td><td>LandTrendr → 逐年拟合轨迹 → 扰动与后续恢复配对</td></tr>
+      <tr><th>指标</th><td>主观权重 DSI；gain/loss 构造 CRE、CSI</td><td>多指数方向检验与一致性 → RL、T90、C10 等事件指标，减少权重和错配问题</td></tr>
+      <tr><th>解释与验证</th><td>分级面积与目视对比</td><td>分区与删失分析 → 驱动因素检验 → NPP 尺度配对、样本验证与敏感性分析</td></tr>
+      </tbody></table></div>
+      <p><a href="#panel-v1">查看原版详细流程 ↓</a>　 <a href="#panel-v2">查看新版详细流程 ↓</a></p>
     </div>
 
     <!-- ========== V1 ========== -->
-    <div class="panel" id="panel-v1" role="tabpanel" aria-labelledby="tab-v1" data-ver="v1" hidden>
+    <div class="panel" id="panel-v1" aria-label="原版技术路线" data-ver="v1">
 
+      <h3>V1 · 原论文路线</h3>
       <div class="flowbar">
         <span class="fl">V1 主链</span>
         <span class="chip">年度合成影像</span><span class="arrow">→</span>
@@ -304,8 +308,9 @@
     </div>
 
     <!-- ========== V2 ========== -->
-    <div class="panel" id="panel-v2" role="tabpanel" aria-labelledby="tab-v2" data-ver="v2">
+    <div class="panel" id="panel-v2" aria-label="新版技术路线" data-ver="v2">
 
+      <h3>V2 · 回应导师问题的新路线（待实施）</h3>
       <div class="flowbar">
         <span class="fl">V2 主链</span>
         <span class="chip">事件前森林掩膜</span><span class="arrow">→</span>
@@ -418,7 +423,7 @@
               <dt>用什么</dt><dd>R（<code>mgcv</code> / <code>segmented</code>）+ 地理探测器</dd>
               <dt>怎么用</dt><dd>先做「受损程度 × 恢复时间」四象限与分段回归，再并列检验六条替代解释，避免把测量效应误读为生态机制</dd>
               <dt>模型参数</dt><dd>GAM / 分段回归 / 地理探测器 q 统计量；报告效应量与解释率，不只报 p 值</dd>
-              <dt>输出</dt><dd>各因子效应量、解释率、机制结论与反例清单</dd>
+              <dt>输出</dt><dd>各因子效应量、解释率、关联解释与反例清单（因果机制需进一步验证）</dd>
               <dt class="handoff">交给下一步</dt><dd class="handoff">S8 用独立数据检验「光谱恢复」与「生产力恢复」是否同步</dd>
             </dl>
           </div>
@@ -772,3 +777,4 @@
 <script src="assets/js/main.js"></script>
 </body>
 </html>
+
