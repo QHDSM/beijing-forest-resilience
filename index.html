@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>北京城市森林扰动—恢复韧性的遥感表征 | 项目主页</title>
+<title>扰动与恢复视角下北京市森林韧性的遥感表征 | 项目主页</title>
 <meta name="description" content="基于 2001—2023 年 Landsat 长时序与 LandTrendr 的北京森林扰动—恢复韧性研究。含原版与重构版两套技术路线的逐环节对照。">
 <meta name="author" content="北京城市学院 城市建设学部">
-<meta property="og:title" content="北京城市森林扰动—恢复韧性的遥感表征">
+<meta property="og:title" content="扰动与恢复视角下北京市森林韧性的遥感表征">
 <meta property="og:description" content="从“碳汇有多少”到“受扰之后能不能恢复”：两版技术路线的完整拆解。">
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="assets/css/style.css">
@@ -29,8 +29,6 @@
       <a href="#findings">复核发现</a>
       <a href="#metrics">指标体系</a>
       <a href="#data">数据参数</a>
-      <a href="#plan">进度</a>
-      <a href="#team">团队</a>
     </nav>
     <div class="progress" id="progress"></div>
   </div>
@@ -42,7 +40,7 @@
 <section class="hero">
   <div class="wrap">
     <div class="eyebrow">2027 年大学生创新创业训练计划 · 创新训练项目</div>
-    <h1>北京城市森林<br><em>扰动—恢复韧性</em>的遥感表征</h1>
+    <h1>扰动与恢复视角下<br><em>北京市森林韧性</em>的遥感表征</h1>
     <p class="lede">
       以 2001—2023 年 Landsat 长时序影像为观测基础，把 LandTrendr 的光谱分段结果重建为「像元—扰动事件」序列，
       用抵抗性、恢复性、持续性三个维度刻画北京森林在扰动之后的恢复过程。
@@ -153,301 +151,9 @@
   </div>
 </section>
 
-<!-- ================= 03 技术路线 ================= -->
-<section id="route">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-no">03</div>
-      <h2>技术路线：两版对照</h2>
-      <p class="sec-sub">
-        同一套数据，两种提问方式。V1 是 2026 年 6 月成稿的论文路线；
-        V2 是依据导师意见与本地复核结果重构后的待实施方案。每一环节都标注了输入、工具、做法、模型、输出，以及交给下一环节的具体产物。
-      </p>
-    </div>
-
-    <div class="route-intro reveal">
-      <p><strong>同页对照：</strong>下面先对比关键环节，再依次展开两版。新版是为回应导师问题提出的待实施方案，参数、数据覆盖和结果仍需核验。</p>
-      <div class="table-wrap"><table><thead><tr><th>环节</th><th>V1 原论文</th><th>V2 新方案 · 回应的问题</th></tr></thead><tbody>
-      <tr><th>研究对象</th><td>全市分级统计，森林口径待核对</td><td>事件前森林掩膜 → 分清未扰动与受扰森林</td></tr>
-      <tr><th>时序模型</th><td>LandTrendr → 独立 gain / loss 的 mag、dur</td><td>LandTrendr → 逐年拟合轨迹 → 扰动与后续恢复配对</td></tr>
-      <tr><th>指标</th><td>主观权重 DSI；gain/loss 构造 CRE、CSI</td><td>多指数方向检验与一致性 → RL、T90、C10 等事件指标，减少权重和错配问题</td></tr>
-      <tr><th>解释与验证</th><td>分级面积与目视对比</td><td>分区与删失分析 → 驱动因素检验 → NPP 尺度配对、样本验证与敏感性分析</td></tr>
-      </tbody></table></div>
-      <p><a href="#panel-v1">查看原版详细流程 ↓</a>　 <a href="#panel-v2">查看新版详细流程 ↓</a></p>
-    </div>
-
-    <!-- ========== V1 ========== -->
-    <div class="panel" id="panel-v1" aria-label="原版技术路线" data-ver="v1">
-
-      <h3>V1 · 原论文路线</h3>
-      <div class="flowbar">
-        <span class="fl">V1 主链</span>
-        <span class="chip">年度合成影像</span><span class="arrow">→</span>
-        <span class="chip">4 光谱指数</span><span class="arrow">→</span>
-        <span class="chip">LandTrendr mag/dur</span><span class="arrow">→</span>
-        <span class="chip">DSI / CRE / CSI</span><span class="arrow">→</span>
-        <span class="chip">五级分级</span><span class="arrow">→</span>
-        <span class="chip">面积占比结论</span>
-      </div>
-
-      <div class="pipeline">
-
-        <article class="stage reveal">
-          <div class="stage-no"><b>S1</b></div>
-          <div class="stage-card">
-            <div class="stage-head"><h3>数据准备与年度合成</h3><span class="badge">数据层</span></div>
-            <dl class="io">
-              <dt>输入</dt><dd>Landsat 5/7/8 地表反射率（2001—2023，30 m）；CLCD 土地覆盖；OSM 行政边界与水域；MOD17A3HGF NPP（500 m）</dd>
-              <dt>用什么</dt><dd>Google Earth Engine（GEE）云端影像集合</dd>
-              <dt>怎么用</dt><dd>逐年筛选 → 云与阴影掩膜 → 年度中值合成 → 按北京市界裁剪 → 统一投影与网格</dd>
-              <dt>模型参数</dt><dd>无模型；依赖合成规则与掩膜阈值</dd>
-              <dt>输出</dt><dd>23 期年度合成影像栈；北京市界、水域、森林三类掩膜</dd>
-              <dt class="handoff">交给下一步</dt><dd class="handoff">S2 逐像元计算四个光谱指数，直接读取年度合成栈</dd>
-            </dl>
-            <div class="stage-foot">论文写「Sentinel-2、Landsat 7 及 Landsat 8」，汇报 PPT 写「Landsat 5/7/8」；2001—2012 年并无 Sentinel-2 可用，两处口径需统一。</div>
-          </div>
-        </article>
-
-        <article class="stage reveal">
-          <div class="stage-no"><b>S2</b></div>
-          <div class="stage-card">
-            <div class="stage-head"><h3>光谱指数构建</h3><span class="badge">特征层</span></div>
-            <dl class="io">
-              <dt>输入</dt><dd>S1 输出的 23 期年度合成影像（6 个反射率波段）</dd>
-              <dt>用什么</dt><dd>GEE 波段运算</dd>
-              <dt>怎么用</dt><dd>逐像元逐年计算 NBR；对 6 波段做缨帽变换得到 TCB / TCG / TCW</dd>
-              <dt>模型参数</dt><dd>NBR = (NIR − SWIR)/(NIR + SWIR)；缨帽变换系数见论文表 2</dd>
-              <dt>输出</dt><dd>4 条 23 年指数时间序列（每像元 4 × 23 个值）</dd>
-              <dt class="handoff">交给下一步</dt><dd class="handoff">S3 以四条序列作为 LandTrendr 的输入变量</dd>
-            </dl>
-            <div class="stage-foot">表 2 中 TCB 的第 4、5 波段系数均为 0.3124，与常用缨帽系数不符，需核对波段顺序与系数来源。</div>
-          </div>
-        </article>
-
-        <article class="stage reveal">
-          <div class="stage-no"><b>S3</b></div>
-          <div class="stage-card">
-            <div class="stage-head"><h3>LandTrendr 时序分段</h3><span class="badge">模型层</span></div>
-            <dl class="io">
-              <dt>输入</dt><dd>S2 的四条指数时间序列</dd>
-              <dt>用什么</dt><dd>LT-GEE：<code>ee.Algorithms.TemporalSegmentation.LandTrendr</code></dd>
-              <dt>怎么用</dt><dd>逐像元做分段线性拟合，识别扰动段与恢复段，提取线段属性</dd>
-              <dt>模型参数</dt><dd>maxSegments 6–8；spikeThreshold 0.9；vertexCountOvershoot 3；preventOneYearRecovery TRUE；recoveryThreshold 0.25–0.5；pvalThreshold 0.05；bestModelProportion 0.75；minObservationsNeeded 6</dd>
-              <dt>输出</dt><dd>每像元的变化年份、幅度 <code>mag</code>、持续时长 <code>dur</code>，按 gain / loss 分别导出</dd>
-              <dt class="handoff">交给下一步</dt><dd class="handoff">S4 取 <code>loss_mag</code>；S5 取 <code>gain_mag</code> 与 <code>loss_mag</code>；S6 再取 <code>gain_dur</code></dd>
-            </dl>
-            <div class="stage-foot">论文未报告实际使用的参数与调优过程，「可复现」无法验证；而参数直接决定事件检出率，必须公开。</div>
-          </div>
-        </article>
-
-        <article class="stage reveal">
-          <div class="stage-no"><b>S4</b></div>
-          <div class="stage-card">
-            <div class="stage-head"><h3>DSI · 碳汇扰动强度指数</h3><span class="badge warn">加权合成</span></div>
-            <dl class="io">
-              <dt>输入</dt><dd>四个指数各自的 <code>loss_mag</code> 栅格</dd>
-              <dt>用什么</dt><dd>ArcGIS 栅格计算器</dd>
-              <dt>怎么用</dt><dd>各指数归一化后加权求和，再除以全域最大值 10408.1 做二次归一化</dd>
-              <dt>模型参数</dt><dd><code>DSI = 0.296·NBR′ + 0.307·TCG′ + 0.243·TCW′ + 0.154·TCB′</code></dd>
-              <dt>输出</dt><dd>DSI 连续栅格 → 五级（断点 0.0118 / 0.0392 / 0.0784 / 0.1373）</dd>
-              <dt class="handoff">交给下一步</dt><dd class="handoff">S7 分级面积统计与专题制图</dd>
-            </dl>
-            <div class="stage-foot">权重来源在同一段里既写「专家打分法」又写「依据相关系数分配」，两种互斥依据并存，且无判断矩阵、无一致性检验、无敏感性分析。</div>
-          </div>
-        </article>
-
-        <article class="stage reveal">
-          <div class="stage-no"><b>S5</b></div>
-          <div class="stage-card">
-            <div class="stage-head"><h3>CRE · 碳汇恢复效率指数</h3><span class="badge warn">比值构造</span></div>
-            <dl class="io">
-              <dt>输入</dt><dd>四个指数的 <code>gain_mag</code> 与 <code>loss_mag</code></dd>
-              <dt>用什么</dt><dd>ArcGIS 栅格计算器</dd>
-              <dt>怎么用</dt><dd>逐指数做增益/损失比，再对四个指数取算术平均</dd>
-              <dt>模型参数</dt><dd><code>CRE_i = Gain_mag_i / Loss_mag_i</code></dd>
-              <dt>输出</dt><dd>CRE 连续栅格（均值 0.0726，最大 4.452）→ 五级</dd>
-              <dt class="handoff">交给下一步</dt><dd class="handoff">S6 作为分子项参与稳定性计算；同时进入 S7 分级制图</dd>
-            </dl>
-            <div class="stage-foot">重分类后第 1 级（0—0.1048，数值最低）占 78.30%，却被图例标为「极高恢复效率」，方向与定义相反。</div>
-          </div>
-        </article>
-
-        <article class="stage reveal">
-          <div class="stage-no"><b>S6</b></div>
-          <div class="stage-card">
-            <div class="stage-head"><h3>CSI · 碳汇稳定性指数</h3><span class="badge warn">链条断裂</span></div>
-            <dl class="io">
-              <dt>输入</dt><dd>CRE 栅格、<code>loss_mag</code>（论文另称需要 <code>gain_dur</code>）</dd>
-              <dt>用什么</dt><dd>ArcGIS 栅格计算器 + 重分类工具</dd>
-              <dt>怎么用</dt><dd>论文写作「增益 /（时长 × 损失）」；本地处理记录实为 <code>CRE / Loss</code>，随后再做一次反向归一化</dd>
-              <dt>模型参数</dt><dd>论文式：<code>Gain/(dur·Loss)</code>；实际链：<code>(max − CRE/Loss) / max</code></dd>
-              <dt>输出</dt><dd>稳定性栅格 → 五级（断点 0.8 / 0.9098 / 0.9569 / 0.9843）→ 极高占 84.16%</dd>
-              <dt class="handoff">交给下一步</dt><dd class="handoff">S7 作为核心结论写入论文与汇报材料</dd>
-            </dl>
-            <div class="stage-foot">实际计算链未使用 <code>dur</code>；反向归一化把「近零」翻成「极高」；统计域为全市 23,889,357 像元，而非森林 865 万像元。</div>
-          </div>
-        </article>
-
-        <article class="stage reveal">
-          <div class="stage-no"><b>S7</b></div>
-          <div class="stage-card">
-            <div class="stage-head"><h3>分级制图与结论</h3><span class="badge">产出层</span></div>
-            <dl class="io">
-              <dt>输入</dt><dd>DSI / CRE / CSI 三套五级栅格；116 个清查样点；NPP 年序列</dd>
-              <dt>用什么</dt><dd>ArcGIS Pro 制图；Word 成稿；PPT 汇报</dd>
-              <dt>怎么用</dt><dd>统计各级面积占比；选取典型区做高分影像目视比对；与 NPP 静态核算结果并置</dd>
-              <dt>模型参数</dt><dd>无统计检验；以目视一致性作为主要验证依据</dd>
-              <dt>输出</dt><dd>8 幅专题图、稳定性等级表、论文与竞赛汇报材料</dd>
-              <dt class="handoff">交给下一步</dt><dd class="handoff">结题材料 / 期刊投稿</dd>
-            </dl>
-            <div class="stage-foot">「2013 年后恢复增强」未剔除 2021—2023 末端：四指数合计增益仅 13.52 km²，损失达 1132.88 km²。</div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-
-    <!-- ========== V2 ========== -->
-    <div class="panel" id="panel-v2" aria-label="新版技术路线" data-ver="v2">
-
-      <h3>V2 · 回应导师问题的新路线（待实施）</h3>
-      <div class="flowbar">
-        <span class="fl">V2 主链</span>
-        <span class="chip">事件前森林掩膜</span><span class="arrow">→</span>
-        <span class="chip">逐年拟合轨迹</span><span class="arrow">→</span>
-        <span class="chip">事件表（配对）</span><span class="arrow">→</span>
-        <span class="chip">一致性集合</span><span class="arrow">→</span>
-        <span class="chip">RL / T90 / C10 / CI / RD</span><span class="arrow">→</span>
-        <span class="chip">分区与机制</span><span class="arrow">→</span>
-        <span class="chip">交叉验证</span>
-      </div>
-
-      <div class="pipeline">
-
-        <article class="stage reveal">
-          <div class="stage-no"><b>S1</b></div>
-          <div class="stage-card">
-            <div class="stage-head"><h3>口径统一：先把分母定对</h3><span class="badge core">前置校正</span></div>
-            <dl class="io">
-              <dt>输入</dt><dd>北京市界、水系、CLCD 逐年土地覆盖、植被类型、DEM、两轮百万亩造林范围</dd>
-              <dt>用什么</dt><dd>ArcGIS Pro</dd>
-              <dt>怎么用</dt><dd>以<strong>事件发生前</strong>的状态界定森林范围；划分五类森林背景区；统一时间窗；末端 2021—2023 单列</dd>
-              <dt>模型参数</dt><dd>规则层，无统计模型；分区依据海拔、土地利用、造林批次</dd>
-              <dt>输出</dt><dd>事件前森林掩膜、五类分区栅格、统一分析网格</dd>
-              <dt class="handoff">交给下一步</dt><dd class="handoff">S2 只在森林像元上重导出轨迹；S6 按分区聚合；S8 按分区做分层抽样</dd>
-            </dl>
-          </div>
-        </article>
-
-        <article class="stage reveal">
-          <div class="stage-no"><b>S2</b></div>
-          <div class="stage-card">
-            <div class="stage-head"><h3>完整轨迹重建</h3><span class="badge core">关键前提</span></div>
-            <dl class="io">
-              <dt>输入</dt><dd>S1 的森林掩膜；原始 Landsat 年度序列；固定并公开的 LandTrendr 参数</dd>
-              <dt>用什么</dt><dd>GEE（LT-GEE 导出逐年拟合值）</dd>
-              <dt>怎么用</dt><dd>不再只导出 mag / dur，而是导出<strong>每像元逐年拟合值</strong>，保留完整轨迹</dd>
-              <dt>模型参数</dt><dd>LandTrendr，参数与 S3（V1）一致但全程公开，并做参数敏感性</dd>
-              <dt>输出</dt><dd>拟合值栅格栈 <code>fit(t)</code>：4 指数 × 23 年</dd>
-              <dt class="handoff">交给下一步</dt><dd class="handoff">S3 直接用 <code>fit(t)</code> 定位基线、低点与恢复段，无需再猜 mag/dur 的配对关系</dd>
-            </dl>
-          </div>
-        </article>
-
-        <article class="stage reveal">
-          <div class="stage-no"><b>S3</b></div>
-          <div class="stage-card">
-            <div class="stage-head"><h3>事件化重建：把线段变成事件</h3><span class="badge core">核心方法</span></div>
-            <dl class="io">
-              <dt>输入</dt><dd>S2 的 <code>fit(t)</code> 轨迹栈</dd>
-              <dt>用什么</dt><dd>Python（numpy 分块读取）+ ArcGIS 栅格计算</dd>
-              <dt>怎么用</dt><dd>识别负斜率且超阈值的段 → 记扰动事件；取事件前 2—3 年均值为基线 <code>V_pre</code>；取恢复段前最低值为 <code>V_min</code>；向后配对恢复段；未恢复记右删失</dd>
-              <dt>模型参数</dt><dd>损失阈值取 max(0.05×动态范围, 2×拟合 RMSE)，并做 0.05 / 0.10 / 0.15 三档敏感性</dd>
-              <dt>输出</dt><dd>事件表：<code>pixel_id, event_year, pre, min, loss, RL, T90, C10, next_event, compound_flag</code></dd>
-              <dt class="handoff">交给下一步</dt><dd class="handoff">S4 按事件逐条做多指数一致性判定；S5 直接消费事件表计算三维指标</dd>
-            </dl>
-          </div>
-        </article>
-
-        <article class="stage reveal">
-          <div class="stage-no"><b>S4</b></div>
-          <div class="stage-card">
-            <div class="stage-head"><h3>方向一致性 + 多指数集合</h3><span class="badge core">替代赋权</span></div>
-            <dl class="io">
-              <dt>输入</dt><dd>S3 生成的四个指数事件表</dd>
-              <dt>用什么</dt><dd>Python / R</dd>
-              <dt>怎么用</dt><dd>先检验 TCB 方向（亮度上升对应扰动，可能与 NBR/TCG 相反），必要时取反或剔除；再在 ±2 年窗口内要求 ≥2/4 指数同时检出</dd>
-              <dt>模型参数</dt><dd>集合幅度取各指数相对损失率中位数；一致性 <code>A = 检出指数数 / K</code>，主分析 A ≥ 0.5</dd>
-              <dt>输出</dt><dd>集合事件 + 置信度 A + 指数子集敏感性结果</dd>
-              <dt class="handoff">交给下一步</dt><dd class="handoff">S5 只对通过一致性检验的事件计算韧性指标，避免单指数噪声主导</dd>
-            </dl>
-          </div>
-        </article>
-
-        <article class="stage reveal">
-          <div class="stage-no"><b>S5</b></div>
-          <div class="stage-card">
-            <div class="stage-head"><h3>三维韧性指标</h3><span class="badge core">指标层</span></div>
-            <dl class="io">
-              <dt>输入</dt><dd>S4 的集合事件（含基线、低点、恢复段起止、是否再扰动）</dd>
-              <dt>用什么</dt><dd>Python / R 计算，ArcGIS 成栅格</dd>
-              <dt>怎么用</dt><dd>逐事件计算抵抗性、恢复性、持续性三个维度；未扰动像元标 N/A 而非「极高稳定」</dd>
-              <dt>模型参数</dt><dd>RL、T90、C5/C10、CI、RD（公式见「指标体系」一节）；T90 采用「弥补 90% 初始亏缺」定义</dd>
-              <dt>输出</dt><dd>五个指标栅格 + 事件级明细表</dd>
-              <dt class="handoff">交给下一步</dt><dd class="handoff">S6 按五类分区做统计检验与类型划分</dd>
-            </dl>
-          </div>
-        </article>
-
-        <article class="stage reveal">
-          <div class="stage-no"><b>S6</b></div>
-          <div class="stage-card">
-            <div class="stage-head"><h3>区域分异与韧性类型学</h3><span class="badge core">回答 RQ1</span></div>
-            <dl class="io">
-              <dt>输入</dt><dd>S5 的指标栅格 + S1 的五类分区</dd>
-              <dt>用什么</dt><dd>R（<code>vegan</code> / <code>survival</code>）+ ArcGIS</dd>
-              <dt>怎么用</dt><dd>分区差异检验；按恢复时间做生存分析；以抵抗性 × 恢复性做二维四分</dd>
-              <dt>模型参数</dt><dd>Kruskal–Wallis + Dunn 事后检验 + Cliff's delta；Kaplan–Meier 处理右删失并做 log-rank</dd>
-              <dt>输出</dt><dd>分区统计表、生存曲线、四类韧性类型图（稳健 / 耐扰 / 机会 / 脆弱）</dd>
-              <dt class="handoff">交给下一步</dt><dd class="handoff">S7 以分区与类型为分层，检验恢复差异的来源</dd>
-            </dl>
-          </div>
-        </article>
-
-        <article class="stage reveal">
-          <div class="stage-no"><b>S7</b></div>
-          <div class="stage-card">
-            <div class="stage-head"><h3>机制检验：并列排除六种解释</h3><span class="badge core">回答 RQ2</span></div>
-            <dl class="io">
-              <dt>输入</dt><dd>S6 的分区与类型；立地（海拔/坡向）、管理（造林批次）、气候（干旱指数）、复发次数</dd>
-              <dt>用什么</dt><dd>R（<code>mgcv</code> / <code>segmented</code>）+ 地理探测器</dd>
-              <dt>怎么用</dt><dd>先做「受损程度 × 恢复时间」四象限与分段回归，再并列检验六条替代解释，避免把测量效应误读为生态机制</dd>
-              <dt>模型参数</dt><dd>GAM / 分段回归 / 地理探测器 q 统计量；报告效应量与解释率，不只报 p 值</dd>
-              <dt>输出</dt><dd>各因子效应量、解释率、关联解释与反例清单（因果机制需进一步验证）</dd>
-              <dt class="handoff">交给下一步</dt><dd class="handoff">S8 用独立数据检验「光谱恢复」与「生产力恢复」是否同步</dd>
-            </dl>
-          </div>
-        </article>
-
-        <article class="stage reveal">
-          <div class="stage-no"><b>S8</b></div>
-          <div class="stage-card">
-            <div class="stage-head"><h3>交叉验证与敏感性</h3><span class="badge core">可信度层</span></div>
-            <dl class="io">
-              <dt>输入</dt><dd>光谱 T90、NPP 恢复时间、116 个清查样点、高分辨率历史影像</dd>
-              <dt>用什么</dt><dd>Python / R + 人工目视判读</dd>
-              <dt>怎么用</dt><dd>把 30 m 事件聚合到 500 m 与 NPP 配对；分层随机抽取 300—500 像元做混淆矩阵；对阈值、窗口与末端年份做敏感性</dd>
-              <dt>模型参数</dt><dd>Wilcoxon 符号秩、Bland–Altman、交叉相关；OA / PA / UA / Kappa；损失阈值 0.05/0.10/0.15</dd>
-              <dt>输出</dt><dd>精度表、敏感性表、结论稳健性说明</dd>
-              <dt class="handoff">交给下一步</dt><dd class="handoff">论文与结题材料：每条结论都绑定一组检验与不确定性</dd>
-            </dl>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </div>
-</section>
+<!-- 03 技术路线 -->
+<section id="route"><div class="wrap"><div class="sec-head"><div class="sec-no">03</div><h2>技术路线 · 同屏对照</h2><p class="sec-sub">按同一研究环节横向比较。每格按照“输入 → 工具与处理 → 输出”组织；向下箭头表示该列输出进入下一环节。新版是回应老师问题的待实施方案。</p></div>
+<div class="route-table" role="table" aria-label="新旧技术路线对照"><div class="route-row route-header" role="row"><div>环节</div><div>V1 原论文路线</div><div>V2 新路线 · 回应老师问题</div></div><div class="route-row" role="row"><div class="route-label">01 数据与范围</div><div class="route-cell old"><p>Landsat 年度影像 + 北京市界、土地覆盖 → GEE 云掩膜、逐年合成与裁剪 → 年度反射率影像栈</p><div class="route-next">↓ 输出进入下一环节</div></div><div class="route-cell new"><p>Landsat + CLCD + 北京市界 → GEE 年度合成，按事件发生前土地覆盖界定森林 → 年度影像栈 + 逐年森林掩膜</p><div class="response">回应：统一森林统计口径；未受扰不等于高韧性</div><div class="route-next">↓ 输出进入下一环节</div></div></div><div class="route-row" role="row"><div class="route-label">02 指数与轨迹</div><div class="route-cell old"><p>年度影像栈 → GEE 计算 NBR、TCG、TCW、TCB → 四条年度指数序列；LandTrendr 分段 → gain/loss 的年份、幅度与时长</p><div class="route-next">↓ 输出进入下一环节</div></div><div class="route-cell new"><p>年度影像栈 + 森林掩膜 → 计算四指数并核查传感器系数与方向 → LandTrendr 分段，保留每年拟合值及顶点 → 四指数完整轨迹</p><div class="response">回应：光谱表示冠层状态，不能直接等同于碳汇</div><div class="route-next">↓ 输出进入下一环节</div></div></div><div class="route-row" role="row"><div class="route-label">03 事件识别</div><div class="route-cell old"><p>gain/loss 分段属性 → 提取变化幅度与持续时间 → 供指数合成使用；增益与损失未必属于同一事件</p><div class="route-next">↓ 输出进入下一环节</div></div><div class="route-cell new"><p>完整轨迹 + 事件前森林状态 → 对齐指数方向、识别超阈值损失，向后配对恢复及再扰动 → 单指数事件表（基线、低点、年份、恢复轨迹）</p><div class="response">回应：同一扰动与恢复配对，避免 CRE/CSI 的事件错配</div><div class="route-next">↓ 输出进入下一环节</div></div></div><div class="route-row" role="row"><div class="route-label">04 综合处理</div><div class="route-cell old"><p>四指数 loss 幅度 → 归一化并按既定权重求和 → DSI 扰动强度栅格</p><div class="route-next">↓ 输出进入下一环节</div></div><div class="route-cell new"><p>单指数事件表 → 在时间容差内匹配事件；检验 TCB 方向，按多指数一致性筛选 → 集合事件表 + 一致性比例</p><div class="response">回应：回应权重来源不清；一致性是检出一致程度，非经过校准的概率</div><div class="route-next">↓ 输出进入下一环节</div></div></div><div class="route-row" role="row"><div class="route-label">05 指标计算</div><div class="route-cell old"><p>gain_mag、loss_mag、gain_dur → 比值组合 CRE、CSI → 恢复效率与稳定性栅格，计算与图例方向需复核</p><div class="route-next">↓ 输出进入下一环节</div></div><div class="route-cell new"><p>集合事件的基线、低点、恢复轨迹和再扰动 → 计算 RL、T90、C10、复合扰动及状态亏缺 → 事件指标表与栅格；未恢复保留删失标记</p><div class="response">回应：回应指标生态含义不足：受损多少、恢复多久、是否再受扰</div><div class="route-next">↓ 输出进入下一环节</div></div></div><div class="route-row" role="row"><div class="route-label">06 格局与解释</div><div class="route-cell old"><p>DSI / CRE / CSI 栅格 → ArcGIS 分级、面积统计和专题制图 → 原论文的空间格局描述</p><div class="route-next">↓ 输出进入下一环节</div></div><div class="route-cell new"><p>事件指标 + 分区、地形、气候和管理数据 → 分区统计、生存分析与回归 → 恢复差异、关联因素与不确定性</p><div class="response">回应：回应区域差异和快慢原因；统计关联不直接证明因果</div><div class="route-next">↓ 输出进入下一环节</div></div></div><div class="route-row" role="row"><div class="route-label">07 验证与结论</div><div class="route-cell old"><p>分级图 + 样点、高分影像及 NPP → 目视对比 → 论文和汇报；缺少完整精度评价</p></div><div class="route-cell new"><p>事件与恢复指标 → 分层样本和历史影像做精度评价；聚合到 500 m 与 MODIS NPP 配对，检验阈值、时间窗与末端敏感性 → 精度表、交叉参照及稳健性报告</p><div class="response">回应：回应光谱与碳的关系：NPP 是独立生产力参照，不能直接验证碳储量</div></div></div></div><p class="route-note">注：新版阈值、参数、可用数据和结果均需在实施时核验；分区、影响因素与 NPP 验证是来自同一事件指标表的并行分析，并非必须等回归完成才进行验证。</p></div></section>
 
 <!-- ================= 04 两版对比 ================= -->
 <section id="compare">
@@ -539,13 +245,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr><th scope="row">1 · 光谱≠碳汇</th><td class="dim">变量越界，光谱是冠层代理</td><td>标题与全文限定为「遥感表征」；碳汇表述收缩为「冠层碳功能」；NPP 只作参照</td><td>S8 / 全文</td></tr>
-          <tr><th scope="row">2 · 专家打分</th><td class="dim">权重不可复现、依据自相矛盾</td><td>取消加权合成；改为方向一致性检验 + 多指数集合，用一致性 A 表达置信度</td><td>S4</td></tr>
-          <tr><th scope="row">3 · CRE/CSI 缺机理</th><td class="dim">mag/dur 的任意代数组合</td><td>拆成 RL / T90 / C10 / CI / RD 五个有明确含义的量，事件级配对后计算</td><td>S3 → S5</td></tr>
-          <tr><th scope="row">4 · 结论无新意</th><td class="dim">只描述格局，未解释过程</td><td>提出三条可检验命题：解耦、复绿≠恢复、恢复债务，逐条绑定检验</td><td>S6 → S7</td></tr>
-          <tr><th scope="row">5 · 区域差异</th><td class="dim">分区粗、无统计检验</td><td>五类森林背景分区 + 生存分析 + 二维类型学，报告效应量而非只报 p</td><td>S6</td></tr>
-          <tr><th scope="row">6 · 快慢机制</th><td class="dim">未区分生态解释与测量效应</td><td>并列检验六种替代解释（生物遗留、持续胁迫、管理、再扰动、植被替代、测量效应）</td><td>S7</td></tr>
-          <tr><th scope="row">7 · 韧性定义</th><td class="dim">概念未界定，指标无法对应</td><td>给出操作性定义，分解为抵抗／恢复／持续三维，明确「对什么扰动、什么功能、什么时间窗」</td><td>S5</td></tr>
+          <tr><th scope="row">1 · 光谱≠碳汇</th><td class="dim">变量越界，光谱是冠层代理</td><td>标题与全文限定为「遥感表征」；碳汇表述收缩为「冠层碳功能」；NPP 只作参照</td><td>07 / 全文</td></tr>
+          <tr><th scope="row">2 · 专家打分</th><td class="dim">权重不可复现、依据自相矛盾</td><td>取消加权合成；改为方向一致性检验 + 多指数集合，用一致性 A 表达检出一致程度</td><td>04</td></tr>
+          <tr><th scope="row">3 · CRE/CSI 缺机理</th><td class="dim">mag/dur 的任意代数组合</td><td>拆成 RL / T90 / C10 / CI / RD 五个有明确含义的量，事件级配对后计算</td><td>03 → 05</td></tr>
+          <tr><th scope="row">4 · 结论无新意</th><td class="dim">只描述格局，未解释过程</td><td>提出三条可检验命题：解耦、复绿≠恢复、恢复债务，逐条绑定检验</td><td>06 → 07</td></tr>
+          <tr><th scope="row">5 · 区域差异</th><td class="dim">分区粗、无统计检验</td><td>五类森林背景分区 + 生存分析 + 二维类型学，报告效应量而非只报 p</td><td>06</td></tr>
+          <tr><th scope="row">6 · 快慢机制</th><td class="dim">未区分生态解释与测量效应</td><td>并列检验六种替代解释（生物遗留、持续胁迫、管理、再扰动、植被替代、测量效应）</td><td>06</td></tr>
+          <tr><th scope="row">7 · 韧性定义</th><td class="dim">概念未界定，指标无法对应</td><td>给出操作性定义，分解为抵抗／恢复／持续三维，明确「对什么扰动、什么功能、什么时间窗」</td><td>05</td></tr>
           <tr><th scope="row">8 · 参考论文 BCEI</th><td class="dim">易被误读为「造一个新比值」</td><td>借鉴其问题组织方式（先指出单一指标之不足 → 定义可解释量 → 检验 → 主动写局限），不照搬比值形式</td><td>全文</td></tr>
         </tbody>
       </table>
@@ -696,67 +402,6 @@
   </div>
 </section>
 
-<!-- ================= 09 进度 ================= -->
-<section id="plan">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-no">09</div>
-      <h2>进度安排</h2>
-      <p class="sec-sub">训练周期 2026 年 11 月 — 2027 年 11 月。</p>
-    </div>
-
-    <div class="timeline reveal">
-      <div class="tl-item">
-        <div class="tl-date">2026.11 — 2027.01</div>
-        <h4>口径统一与基础重建</h4>
-        <p>查阅文献，明确事件化重建方案；找回或重跑 GEE 脚本；统一森林掩膜、时间窗与末端处理规则；完成五类分区。</p>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">2027.02 — 2027.04</div>
-        <h4>轨迹重导出与事件识别</h4>
-        <p>导出逐年拟合值栈；建立事件表；完成方向一致性检验与多指数集合；产出第一版韧性指标。</p>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">2027.05</div>
-        <h4>中期检查</h4>
-        <p>汇总阶段性图件与研究进展，完成中期材料；据反馈调整分区与阈值方案。</p>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">2027.06 — 2027.08</div>
-        <h4>区域分异与机制检验</h4>
-        <p>分区统计、生存分析、二维类型学；分段回归与 GAM；与 NPP 做交叉验证；完成精度评估与敏感性分析。</p>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">2027.09 — 2027.11</div>
-        <h4>成果产出与结题</h4>
-        <p>完成研究报告、专题图件、展示材料与代码仓库；整理结题材料并投稿。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 10 团队 ================= -->
-<section id="team">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-no">10</div>
-      <h2>团队与分工</h2>
-      <p class="sec-sub">北京城市学院 城市建设学部 · 地理信息科学专业 · 本科生团队</p>
-    </div>
-
-    <div class="team reveal">
-      <div class="member"><b>赵隆</b><span>项目负责人<br>方案统筹 · 进度管理 · 成果汇总</span></div>
-      <div class="member"><b>潘明坤</b><span>遥感数据收集与预处理<br>LandTrendr 应用与结果分析</span></div>
-      <div class="member"><b>张昶</b><span>文献梳理 · 评价方法完善<br>研究报告撰写</span></div>
-      <div class="member"><b>龚元勋</b><span>土地覆盖与基础地理数据处理<br>研究区提取与空间分析</span></div>
-      <div class="member"><b>刘冠尧</b><span>遥感指标计算<br>典型区域影像核查</span></div>
-      <div class="member"><b>姚一鸣</b><span>专题地图制作 · 结果可视化<br>展示材料制作</span></div>
-      <div class="member"><b>王伟泽</b><span>应用场景与可行性分析<br>成果整理</span></div>
-      <div class="member"><b>熊妮娜 教授</b><span>指导教师<br>地理信息技术在城市管理、城市环境中的应用</span></div>
-    </div>
-  </div>
-</section>
-
 </main>
 
 <footer>
@@ -764,11 +409,11 @@
     <div>
       <p><b>北京城市学院 · 城市建设学部</b></p>
       <p>2027 年大学生创新创业训练计划 · 创新训练项目</p>
-      <p>项目名称：扰动与恢复视角下北京城市森林碳汇韧性的遥感表征</p>
+      <p>项目名称：扰动与恢复视角下北京市森林韧性的遥感表征</p>
     </div>
     <div class="foot-right">
       <p>本站为静态页面，无外部依赖，可直接部署于 GitHub Pages</p>
-      <p>数据与结论以最终论文为准 · 更新于 2026-10-30</p>
+      <p>数据与结论以最终论文为准</p>
       <p><a href="https://github.com/QHDSM" target="_blank" rel="noopener">github.com/QHDSM</a></p>
     </div>
   </div>
