@@ -913,3 +913,26 @@ footer {
   section { page-break-inside: avoid; padding: 24px 0; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* 紧凑的同屏技术路线 */
+:root { --maxw: 1320px; --nav-h: 50px; }
+body { font-size: 14px; line-height: 1.6; }
+section { padding: 48px 0; }
+.hero { padding: 55px 0 !important; }
+.hero h1 { font-size: clamp(28px, 3.8vw, 48px) !important; line-height: 1.2; }
+.sec-head { margin-bottom: 24px; }
+.route-table { border: 1px solid var(--line); background: #fff; }
+.route-row { display: grid; grid-template-columns: 100px minmax(0,1fr) minmax(0,1fr); border-bottom: 1px solid var(--line); }
+.route-row:last-child { border-bottom: 0; }
+.route-row > div { padding: 12px 15px; min-width: 0; }
+.route-header { background: #243e32; color: white; font-weight: 700; }
+.route-label { font-weight: 700; color: var(--ink-2); background: var(--paper-2); }
+.route-cell { border-left: 1px solid var(--line); font-size: 13px; line-height: 1.55; }
+.route-cell p { margin: 0; }
+.route-cell.old { background: #fffaf1; }
+.route-cell.new { background: #f1f8f3; }
+.response { margin-top: 7px; color: #195d40; font-weight: 600; }
+.route-next { margin-top: 6px; color: #65776c; font-size: 11px; }
+.route-note { font-size: 12px; color: var(--ink-3); }
+@media (max-width: 700px) { .wrap { padding: 0 14px; } .route-row { grid-template-columns: 52px minmax(0,1fr) minmax(0,1fr); } .route-row > div { padding: 8px 6px; } .route-cell { font-size: 11px; overflow-wrap: anywhere; } .route-label { font-size: 11px; } }
+
