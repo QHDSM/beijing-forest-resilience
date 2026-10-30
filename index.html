@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>扰动与恢复视角下北京市森林韧性的遥感表征 | 项目主页</title>
-<meta name="description" content="基于 2001—2023 年 Landsat 长时序与 LandTrendr 的北京森林扰动—恢复韧性研究。含原版与重构版两套技术路线的逐环节对照。">
+<meta name="description" content="基于 2001—2023 年 Landsat 长时序与 LandTrendr 的北京森林扰动—恢复韧性研究。展示回应导师意见的森林扰动与恢复研究路线。">
 <meta name="author" content="北京城市学院 城市建设学部">
 <meta property="og:title" content="扰动与恢复视角下北京市森林韧性的遥感表征">
-<meta property="og:description" content="从“碳汇有多少”到“受扰之后能不能恢复”：两版技术路线的完整拆解。">
+<meta property="og:description" content="从数据、模型到产物与下一步用途，追踪森林韧性研究路线。">
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="assets/css/style.css">
 <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
@@ -58,7 +58,6 @@
       <span>北京城市学院 · 城市建设学部</span>
       <span>地理信息科学专业</span>
       <span>指导教师：熊妮娜 教授</span>
-      <span>更新：2026-10-30</span>
     </div>
   </div>
 </section>
@@ -152,78 +151,7 @@
 </section>
 
 <!-- 03 技术路线 -->
-<section id="route"><div class="wrap"><div class="sec-head"><div class="sec-no">03</div><h2>技术路线 · 同屏对照</h2><p class="sec-sub">按同一研究环节横向比较。每格按照“输入 → 工具与处理 → 输出”组织；向下箭头表示该列输出进入下一环节。新版是回应老师问题的待实施方案。</p></div>
-<div class="route-table" role="table" aria-label="新旧技术路线对照"><div class="route-row route-header" role="row"><div>环节</div><div>V1 原论文路线</div><div>V2 新路线 · 回应老师问题</div></div><div class="route-row" role="row"><div class="route-label">01 数据与范围</div><div class="route-cell old"><p>Landsat 年度影像 + 北京市界、土地覆盖 → GEE 云掩膜、逐年合成与裁剪 → 年度反射率影像栈</p><div class="route-next">↓ 输出进入下一环节</div></div><div class="route-cell new"><p>Landsat + CLCD + 北京市界 → GEE 年度合成，按事件发生前土地覆盖界定森林 → 年度影像栈 + 逐年森林掩膜</p><div class="response">回应：统一森林统计口径；未受扰不等于高韧性</div><div class="route-next">↓ 输出进入下一环节</div></div></div><div class="route-row" role="row"><div class="route-label">02 指数与轨迹</div><div class="route-cell old"><p>年度影像栈 → GEE 计算 NBR、TCG、TCW、TCB → 四条年度指数序列；LandTrendr 分段 → gain/loss 的年份、幅度与时长</p><div class="route-next">↓ 输出进入下一环节</div></div><div class="route-cell new"><p>年度影像栈 + 森林掩膜 → 计算四指数并核查传感器系数与方向 → LandTrendr 分段，保留每年拟合值及顶点 → 四指数完整轨迹</p><div class="response">回应：光谱表示冠层状态，不能直接等同于碳汇</div><div class="route-next">↓ 输出进入下一环节</div></div></div><div class="route-row" role="row"><div class="route-label">03 事件识别</div><div class="route-cell old"><p>gain/loss 分段属性 → 提取变化幅度与持续时间 → 供指数合成使用；增益与损失未必属于同一事件</p><div class="route-next">↓ 输出进入下一环节</div></div><div class="route-cell new"><p>完整轨迹 + 事件前森林状态 → 对齐指数方向、识别超阈值损失，向后配对恢复及再扰动 → 单指数事件表（基线、低点、年份、恢复轨迹）</p><div class="response">回应：同一扰动与恢复配对，避免 CRE/CSI 的事件错配</div><div class="route-next">↓ 输出进入下一环节</div></div></div><div class="route-row" role="row"><div class="route-label">04 综合处理</div><div class="route-cell old"><p>四指数 loss 幅度 → 归一化并按既定权重求和 → DSI 扰动强度栅格</p><div class="route-next">↓ 输出进入下一环节</div></div><div class="route-cell new"><p>单指数事件表 → 在时间容差内匹配事件；检验 TCB 方向，按多指数一致性筛选 → 集合事件表 + 一致性比例</p><div class="response">回应：回应权重来源不清；一致性是检出一致程度，非经过校准的概率</div><div class="route-next">↓ 输出进入下一环节</div></div></div><div class="route-row" role="row"><div class="route-label">05 指标计算</div><div class="route-cell old"><p>gain_mag、loss_mag、gain_dur → 比值组合 CRE、CSI → 恢复效率与稳定性栅格，计算与图例方向需复核</p><div class="route-next">↓ 输出进入下一环节</div></div><div class="route-cell new"><p>集合事件的基线、低点、恢复轨迹和再扰动 → 计算 RL、T90、C10、复合扰动及状态亏缺 → 事件指标表与栅格；未恢复保留删失标记</p><div class="response">回应：回应指标生态含义不足：受损多少、恢复多久、是否再受扰</div><div class="route-next">↓ 输出进入下一环节</div></div></div><div class="route-row" role="row"><div class="route-label">06 格局与解释</div><div class="route-cell old"><p>DSI / CRE / CSI 栅格 → ArcGIS 分级、面积统计和专题制图 → 原论文的空间格局描述</p><div class="route-next">↓ 输出进入下一环节</div></div><div class="route-cell new"><p>事件指标 + 分区、地形、气候和管理数据 → 分区统计、生存分析与回归 → 恢复差异、关联因素与不确定性</p><div class="response">回应：回应区域差异和快慢原因；统计关联不直接证明因果</div><div class="route-next">↓ 输出进入下一环节</div></div></div><div class="route-row" role="row"><div class="route-label">07 验证与结论</div><div class="route-cell old"><p>分级图 + 样点、高分影像及 NPP → 目视对比 → 论文和汇报；缺少完整精度评价</p></div><div class="route-cell new"><p>事件与恢复指标 → 分层样本和历史影像做精度评价；聚合到 500 m 与 MODIS NPP 配对，检验阈值、时间窗与末端敏感性 → 精度表、交叉参照及稳健性报告</p><div class="response">回应：回应光谱与碳的关系：NPP 是独立生产力参照，不能直接验证碳储量</div></div></div></div><p class="route-note">注：新版阈值、参数、可用数据和结果均需在实施时核验；分区、影响因素与 NPP 验证是来自同一事件指标表的并行分析，并非必须等回归完成才进行验证。</p></div></section>
-
-<!-- ================= 04 两版对比 ================= -->
-<section id="compare">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-no">04</div>
-      <h2>两版的核心差异</h2>
-      <p class="sec-sub">不是换了几个缩写，而是把「描述格局」换成了「解释过程」。</p>
-    </div>
-
-    <div class="table-wrap reveal">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">对比维度</th>
-            <th scope="col">V1 · 原版</th>
-            <th scope="col">V2 · 重构版</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">研究对象</th>
-            <td>北京市全域植被（含建成区、农田、道路）</td>
-            <td>森林（以<strong>事件发生前</strong>状态界定，避免把最严重损失区排除）</td>
-          </tr>
-          <tr>
-            <th scope="row">变量定位</th>
-            <td>光谱变化 ≈ 碳汇变化</td>
-            <td>光谱 = <strong>冠层碳功能代理</strong>；NPP 为独立参照，不宣称碳储量</td>
-          </tr>
-          <tr>
-            <th scope="row">事件定义</th>
-            <td>无。gain 与 loss 是两条独立线段，直接相除</td>
-            <td>同一次扰动的配对事件：基线 → 低点 → 恢复段 → 是否再扰动</td>
-          </tr>
-          <tr>
-            <th scope="row">指数关系</th>
-            <td>专家打分加权合成（0.296 / 0.307 / 0.243 / 0.154）</td>
-            <td>不做加权；先做方向一致性检验，再用多指数集合与一致性 A</td>
-          </tr>
-          <tr>
-            <th scope="row">核心指标</th>
-            <td>DSI / CRE / CSI（mag 与 dur 的代数组合）</td>
-            <td>RL / T90 / C10 / CI / RD（各有单位与生态含义）</td>
-          </tr>
-          <tr>
-            <th scope="row">统计分母</th>
-            <td>23,889,357 像元（全市域）</td>
-            <td>森林像元（约 865—887 万），未扰动像元标 N/A</td>
-          </tr>
-          <tr>
-            <th scope="row">验证方式</th>
-            <td>117 个样点目视比对，无混淆矩阵</td>
-            <td>分层随机 300—500 像元 + 混淆矩阵 + NPP 交叉验证 + 阈值敏感性</td>
-          </tr>
-          <tr>
-            <th scope="row">结论性质</th>
-            <td>描述性：阶段性变化、84.16% 极高稳定</td>
-            <td>机制性：扰动—恢复解耦、复绿≠恢复、恢复债务累积</td>
-          </tr>
-          <tr>
-            <th scope="row">可复现性</th>
-            <td>参数未报告，权重来源矛盾，计算链与公式不一致</td>
-            <td>参数公开、计算链可追溯、给出敏感性方案与代码仓库</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
+<section id="route"><div class="wrap"><div class="sec-head"><div class="sec-no">03</div><h2>技术路线</h2><p class="sec-sub">回应导师问题的新方案：从数据到模型、产物和下一步用途，沿一条证据链追踪。点击每个环节查看具体方法。</p></div><div class="route-legend">输入数据 <span>→</span> 处理与模型 <span>→</span> 直接产物 <span>→</span> 下一环节</div><div class="route-chain"><details class="route-node"><summary><span class="node-number">01</span><span class="node-main"><strong>数据与森林范围</strong><small>Landsat · CLCD · GEE</small></span><span class="node-output"><small>直接产出</small><b>年度影像栈 + 森林掩膜</b></span><span class="node-expand">展开 ＋</span></summary><div class="node-detail"><p>输入：Landsat 5/7/8 地表反射率、CLCD、北京市界。GEE 完成云和阴影掩膜、年度合成与裁剪；统一网格。保留逐年土地覆盖，避免用事件后的森林状态排除严重受损区域。</p><div class="node-handoff"><b>输出去向 → </b>年度影像供 02 计算指数；逐年掩膜供 03 确定事件前是否为森林。</div></div></details><details class="route-node"><summary><span class="node-number">02</span><span class="node-main"><strong>光谱序列与拟合</strong><small>NBR / TCG / TCW / TCB · LandTrendr</small></span><span class="node-output"><small>直接产出</small><b>四指数逐年拟合轨迹 + 顶点</b></span><span class="node-expand">展开 ＋</span></summary><div class="node-detail"><p>输入：01 年度影像栈。GEE 计算四个光谱指数，核对不同传感器的波段与缨帽系数，LandTrendr 对年度序列分段拟合并导出完整轨迹。参数需公开并进行敏感性检验。光谱变化是冠层状态的代理。</p><div class="node-handoff"><b>输出去向 → </b>将每像元拟合值和年份交给 03 识别扰动低点与恢复过程。</div></div></details><details class="route-node"><summary><span class="node-number">03</span><span class="node-main"><strong>扰动与恢复配对</strong><small>方向统一 · 事件识别</small></span><span class="node-output"><small>直接产出</small><b>单指数事件表</b></span><span class="node-expand">展开 ＋</span></summary><div class="node-detail"><p>输入：02 拟合轨迹和 01 逐年森林掩膜。统一指数受损方向，识别超过阈值的下降段；结合事件前森林状态记录扰动，并追踪低点后的恢复和再次扰动。未恢复事件标注右删失。</p><div class="node-handoff"><b>输出去向 → </b>将像元、事件年份、基线、低点和后续轨迹交给 04 跨指数匹配。</div></div></details><details class="route-node"><summary><span class="node-number">04</span><span class="node-main"><strong>多指数一致性</strong><small>时间窗口匹配 · 一致性检验</small></span><span class="node-output"><small>直接产出</small><b>集合事件表 + 一致性比例</b></span><span class="node-expand">展开 ＋</span></summary><div class="node-detail"><p>输入：03 四指数事件表。检查 TCB 方向，在建议的 ±2 年窗口匹配事件；主分析可要求至少 2 个指数检出，并对窗口和指数子集做敏感性分析。一致性比例反映检出一致程度，不是经校准的概率。</p><div class="node-handoff"><b>输出去向 → </b>将通过筛选的同一事件基线、低点、轨迹和再扰动信息交给 05 计算指标。</div></div></details><details class="route-node"><summary><span class="node-number">05</span><span class="node-main"><strong>事件级韧性表征</strong><small>RL · T90 · C10 · 复合扰动</small></span><span class="node-output"><small>直接产出</small><b>事件指标表 + 指标栅格</b></span><span class="node-expand">展开 ＋</span></summary><div class="node-detail"><p>输入：04 集合事件表。计算相对损失 RL、弥补初始亏缺 90% 的时间 T90、固定窗口恢复完整度 C10 和再扰动情况；保留未完成恢复的删失信息。恢复指标只对已检测到扰动的事件计算。</p><div class="node-handoff"><b>输出去向 → </b>同一指标表分别送往 06 区域与因素分析，以及 07 验证；未扰动像元单独报告。</div></div></details><details class="route-node"><summary><span class="node-number">06</span><span class="node-main"><strong>空间分异与因素分析</strong><small>分区统计 · 生存分析 · 回归</small></span><span class="node-output"><small>直接产出</small><b>分区差异 + 因素关联</b></span><span class="node-expand">展开 ＋</span></summary><div class="node-detail"><p>输入：05 事件指标表与森林背景分区、地形、气候及造林管理等数据。分区比较恢复时间及受损程度，采用生存分析处理右删失，并用回归等方法检验因素关联；关联不能直接证明因果。</p><div class="node-handoff"><b>输出去向 → </b>把差异与关联结果送入 08，结合 07 的验证结果判断哪些结论稳健。</div></div></details><details class="route-node"><summary><span class="node-number">07</span><span class="node-main"><strong>独立验证与敏感性</strong><small>历史影像 · MODIS NPP · 阈值检验</small></span><span class="node-output"><small>直接产出</small><b>精度表 + NPP 对照 + 稳健性</b></span><span class="node-expand">展开 ＋</span></summary><div class="node-detail"><p>输入：05 事件表与指标、分层样本、历史高分影像和 MODIS NPP。以独立判读评估事件识别，聚合到 NPP 网格比较恢复过程；改变检测阈值、指数组合和末端年份检验稳健性。NPP 是生产力参照，不是碳储量直接验证。</p><div class="node-handoff"><b>输出去向 → </b>把识别精度、尺度配对与敏感性结果交给 08，约束结论范围。</div></div></details><details class="route-node"><summary><span class="node-number">08</span><span class="node-main"><strong>研究结论与应用</strong><small>证据综合 · 不确定性</small></span><span class="node-output"><small>直接产出</small><b>区域韧性格局 + 可解释的管理启示</b></span><span class="node-expand">展开 ＋</span></summary><div class="node-detail"><p>输入：06 区域与因素分析结果，以及 07 精度与稳健性报告。综合回答区域差异、恢复快慢及指标可信度；目前均为待检验研究问题，不预设结果。</p><div class="node-handoff"><b>输出去向 → </b>输出研究报告、图件与答辩依据；逐条说明数据、检验和局限。</div></div></details></div><p class="route-note">06 与 07 均使用 05 的输出，分别开展分析和验证，再共同汇入 08。此路线为拟实施方案，阈值与数据可用性需核验。</p></div></section>
 
 <!-- ================= 05 八条意见 ================= -->
 <section id="review">
