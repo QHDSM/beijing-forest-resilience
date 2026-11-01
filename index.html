@@ -25,8 +25,8 @@
       <a href="#overview">项目概览</a>
       <a href="#questions">科学问题</a>
       <a href="#route">技术路线</a>
-      <a href="#review">八条意见</a>
-      <a href="#findings">复核发现</a>
+      <a href="#review">方案回应</a>
+      <a href="#findings">关键核查</a>
       <a href="#metrics">指标体系</a>
       <a href="#data">数据参数</a>
     </nav>
@@ -43,15 +43,15 @@
     <h1>扰动与恢复视角下<br><em>北京市森林韧性</em>的遥感表征</h1>
     <p class="lede">
       以 2001—2023 年 Landsat 长时序影像为观测基础，把 LandTrendr 的光谱分段结果重建为「像元—扰动事件」序列，
-      用抵抗性、恢复性、持续性三个维度刻画北京森林在扰动之后的恢复过程。
+      构建五年恢复过程指数，结合恢复比例、恢复时间及再次扰动，分析森林恢复韧性的时空差异。
     </p>
-    <p class="lede-line">不是问「碳汇有多少」，而是问「受扰之后，还能不能恢复」。</p>
+    <p class="lede-line">从扰动状态到恢复韧性，追踪森林恢复的时间与空间差异。</p>
 
     <div class="stats">
       <div class="stat"><b>23<i>年</i></b><span>Landsat 连续观测 2001—2023</span></div>
       <div class="stat"><b>4<i>指数</i></b><span>NBR / TCB / TCG / TCW</span></div>
       <div class="stat"><b>30<i>m</i></b><span>像元尺度，全市域覆盖</span></div>
-      <div class="stat"><b>116<i>个</i></b><span>森林清查样点（实测记录）</span></div>
+      <div class="stat"><b>116<i>个</i></b><span>整理的森林调查记录</span></div>
     </div>
 
     <div class="hero-meta">
@@ -63,275 +63,63 @@
 </section>
 
 <!-- ================= 01 项目概览 ================= -->
-<section id="overview">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-no">01</div>
-      <h2>项目概览</h2>
-      <p class="sec-sub">一个被静态核算掩盖的问题：北京的森林在变多，但它承受扰动的能力是否也在变强？</p>
-    </div>
-
-    <div class="two-col">
-      <div class="prose reveal">
-        <p>
-          北京在 2012 年启动第一轮百万亩平原造林（2012—2015），2018 年启动第二轮（2018—2022），
-          两轮工程合计新增造林逾 200 万亩，森林覆盖率由 38.60% 提升至 44.90%。
-          森林面积的增长有目共睹，但面积增长并不等于生态功能同步增强。
-        </p>
-        <p>
-          传统碳汇评估多依赖森林资源清查、生物量转换或 InVEST 等静态核算方法，
-          能回答「某一时点有多少碳」，却难以回答<strong>扰动发生在哪一年、损失了多大比例、之后恢复了多久、有没有恢复完</strong>。
-          而后者，恰恰决定了这片森林在未来气候压力下是否还站得住。
-        </p>
-        <p>
-          本项目以北京为研究区，利用 Google Earth Engine 平台与 2001—2023 年 Landsat 长时间序列数据，
-          采用 LandTrendr 时序分割算法识别森林扰动与恢复过程，
-          并在此基础上重建「扰动事件—恢复过程」的配对关系，
-          构建抵抗性、恢复性、持续性三个维度的韧性指标，
-          结合森林清查样点、高分辨率影像与 MODIS NPP 进行独立验证。
-        </p>
-        <p>
-          研究的落点不在多画几张图，而在于回答一个可以被证伪的问题：
-          <strong>同样是受扰，为什么有的森林恢复得快，有的却迟迟回不来，甚至反复受扰？</strong>
-        </p>
-      </div>
-
-      <aside class="aside-note reveal">
-        <h4>一句话说明</h4>
-        <p>
-          LandTrendr 识别的是<strong>光谱轨迹的分段</strong>，不是碳储量，也不是碳通量。
-          光谱回升只能说明「观测到植被状态恢复信号」，
-          不能独立证明生物量、碳库或净碳收支已经恢复。
-        </p>
-        <p>
-          因此本项目把研究变量严格限定为<strong>冠层碳功能代理</strong>，
-          并用 NPP 作独立参照，报告二者的一致与差异，而不把前者等同于后者。
-        </p>
-      </aside>
-    </div>
-  </div>
-</section>
+<section id="overview"><div class="wrap"><div class="sec-head reveal"><div class="sec-no">01</div><h2>项目概览</h2><p class="sec-sub">从森林扰动状态出发，研究不同区域森林在受损后的恢复过程。</p></div><div class="two-col"><div class="prose reveal">
+<p>北京市山地、平原和城乡边缘森林具有不同的立地条件与扰动背景。森林受损后，恢复所需时间和恢复程度可能存在差异；恢复过程中也可能发生再次扰动。</p>
+<p>项目以2001—2023年为基础，结合Landsat长时序影像与LandTrendr重建森林变化轨迹，识别扰动事件并配对其后续恢复过程，构建森林恢复韧性指标，比较不同区域及扰动年份的恢复特征。</p>
+<p>研究拟结合地形、气候和土地利用资料分析与恢复差异相关的因素，利用可获取的多时相高分影像及调查资料核查结果。各项指标和分析均为拟实施方案。</p></div>
+<aside class="aside-note reveal"><h4>研究对象</h4><p>本项目将森林扰动恢复韧性界定为：森林在给定扰动及环境条件下，经历状态下降后恢复所关注森林属性并维持恢复状态的能力。</p><p>遥感首先表征光谱状态；乔木结构及物种组成能否恢复，需要独立资料进一步检验。</p></aside></div></div></section>
 
 <!-- ================= 02 科学问题 ================= -->
-<section id="questions">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-no">02</div>
-      <h2>三个递进的科学问题</h2>
-      <p class="sec-sub">从「格局是什么」到「为什么是这样」，再到「怎么测才算数」。</p>
-    </div>
-
-    <div class="qgrid reveal">
-      <article class="qcard">
-        <div class="qno">RQ 1 / 格局</div>
-        <h3>不同森林背景下，扰动后的恢复轨迹有哪些类型，空间上如何分布？</h3>
-        <p>
-          按山地原生林、浅山过渡带、平原人工林、城乡边缘林、建成区绿地五类背景分区，
-          比较扰动频率、受损幅度、恢复时间与恢复完整度的差异。
-        </p>
-      </article>
-      <article class="qcard">
-        <div class="qno">RQ 2 / 机制</div>
-        <h3>控制扰动类型与受损程度后，哪些因素与恢复快慢、恢复不足有关？</h3>
-        <p>
-          检验立地、树种、管理批次、灾后干旱与再次扰动的相对贡献，
-          并并列排除「生物遗留」「持续胁迫」「植被替代」「测量效应」等替代解释。
-        </p>
-      </article>
-      <article class="qcard">
-        <div class="qno">RQ 3 / 方法</div>
-        <h3>如何定义森林扰动恢复韧性，并构建有生态学意义、可验证的遥感表征？</h3>
-        <p>
-          放弃主观加权与 mag/dur 的任意比值，改为事件级配对 +
-          抵抗／恢复／持续三维指标，并给出可复现的阈值与敏感性方案。
-        </p>
-      </article>
-    </div>
-  </div>
-</section>
+<section id="questions"><div class="wrap"><div class="sec-head reveal"><div class="sec-no">02</div><h2>三个递进的科学问题</h2><p class="sec-sub">先识别扰动与恢复，再构建指标，最后比较差异并分析可能的解释。</p></div><div class="qgrid reveal">
+<article class="qcard"><div class="qno">问题 1 / 扰动状态</div><h3>北京市不同区域森林经历了怎样的扰动与恢复？</h3><p>识别扰动时间、受损程度、恢复轨迹及再次扰动，并区分森林恢复、新造林与用途转换。</p></article>
+<article class="qcard"><div class="qno">问题 2 / 指标构建</div><h3>如何定义并表征森林的扰动恢复韧性？</h3><p>以扰动前状态和受损低点为参照，构建五年恢复过程指数，并结合恢复时间、第五年恢复比例与再次扰动。</p></article>
+<article class="qcard"><div class="qno">问题 3 / 时空差异</div><h3>为什么不同森林的恢复过程可能不同？</h3><p>在控制扰动类型、初始状态与观察时长的基础上，比较区域差异，检验其与立地、气候和土地利用的关联。</p></article></div></div></section>
 
 <!-- 03 技术路线 -->
-<section id="route"><div class="wrap">
-<div class="sec-head"><div class="sec-no">03</div><h2>技术路线</h2><p class="sec-sub">从遥感观测出发，追踪一次扰动及其恢复过程，最终回答森林韧性的区域差异与成因。每个格子中，棕色为原路线、绿色为新路线；橙色标注对应老师的问题。新路线为拟实施方案。</p></div>
-<div class="unified-route"><div class="route-key"><span class="key-old">● 原路线</span><span class="key-new">● 新路线</span><span>橙色文字：回应老师的问题</span></div><article class="unified-card"><div class="unified-heading"><span>01</span><h3>数据与研究范围</h3></div><div class="unified-versions"><div class="version-old"><b>原路线</b><p>Landsat 年度合成、森林与行政边界掩膜。<b>产出：</b>年度反射率影像。</p></div><div class="version-new"><b>新路线</b><p>Landsat + CLCD + 市界 → GEE 云掩膜、年度合成及统一网格。<b>产出：</b>年度影像栈与逐年森林掩膜。</p></div></div><div class="teacher-response"><span>回应老师</span><p>以事件发生前的森林范围界定研究对象，单列未受扰区域，避免将没有变化直接视为高稳定。</p></div></article><div class="flow-link"><span>年度影像栈 → 光谱指数；森林掩膜 → 事件筛选</span></div><article class="unified-card"><div class="unified-heading"><span>02</span><h3>指数计算与时序建模</h3></div><div class="unified-versions"><div class="version-old"><b>原路线</b><p>四指数年度序列 → LandTrendr 分段，分别提取 gain / loss 的幅度与时长。<b>产出：</b>mag、dur 栅格。</p></div><div class="version-new"><b>新路线</b><p>年度影像 → NBR、TCG、TCW、TCB → LandTrendr 分段拟合。<b>产出：</b>逐年拟合轨迹与顶点。</p></div></div><div class="teacher-response"><span>回应老师</span><p>问题 1：光谱指数表征冠层状态，不能直接等同碳汇；完整轨迹用于后续过程分析，NPP 用于独立参照。</p></div></article><div class="flow-link"><span>拟合轨迹 + 事件前森林掩膜 → 扰动与恢复识别</span></div><article class="unified-card"><div class="unified-heading"><span>03</span><h3>扰动与恢复配对</h3></div><div class="unified-versions"><div class="version-old"><b>原路线</b><p>原方案主要提取独立的增益、损失分段，未明确配对同一事件。</p></div><div class="version-new"><b>新路线</b><p>拟合轨迹 + 事件前森林范围 → 识别损失、低点、后续恢复及再扰动。<b>产出：</b>单指数事件表与删失标记。</p></div></div><div class="teacher-response"><span>回应老师</span><p>问题 3：将同一次扰动与后续恢复配对，避免原 CRE/CSI 中不同事件的增益与损失错配。</p></div></article><div class="flow-link"><span>事件年份、基线、低点与轨迹 → 多指数匹配</span></div><article class="unified-card"><div class="unified-heading"><span>04</span><h3>多指数一致性</h3></div><div class="unified-versions"><div class="version-old"><b>原路线</b><p>原方案对四个指数归一化后加权合成 DSI，权重依据需核查。</p></div><div class="version-new"><b>新路线</b><p>单指数事件表 → 检验 TCB 方向，按时间窗口匹配并统计一致性。<b>产出：</b>集合事件表与一致性比例。</p></div></div><div class="teacher-response"><span>回应老师</span><p>问题 2：用方向检验与事件一致性替代来源不清的主观权重，并对窗口和指数组合做敏感性检验。</p></div></article><div class="flow-link"><span>集合事件表 → 事件级韧性指标</span></div><article class="unified-card"><div class="unified-heading"><span>05</span><h3>韧性指标计算</h3></div><div class="unified-versions"><div class="version-old"><b>原路线</b><p>以幅度与时长构造 DSI、CRE、CSI；公式、实际计算链和图例方向需复核。</p></div><div class="version-new"><b>新路线</b><p>集合事件的基线、低点、恢复与再扰动 → RL、T90、C10 等指标。<b>产出：</b>事件指标表、栅格和删失标记。</p></div></div><div class="teacher-response"><span>回应老师</span><p>问题 3、7、8：分别定义受损、恢复时间与完整度；借鉴老师论文强调指标含义、单位与局限的思路，并非直接使用 BCEI。</p></div></article><div class="flow-link"><span>事件指标 → 分区分析与独立验证（并行）</span></div><article class="unified-card"><div class="unified-heading"><span>06</span><h3>区域差异与因素</h3></div><div class="unified-versions"><div class="version-old"><b>原路线</b><p>原方案按指标分级、面积统计及专题制图，主要描述空间格局。</p></div><div class="version-new"><b>新路线</b><p>事件指标 + 分区、地形、气候及管理数据 → 分区统计、生存分析与回归。<b>产出：</b>区域差异、因素关联与不确定性。</p></div></div><div class="teacher-response"><span>回应老师</span><p>问题 4、5、6：比较不同森林背景的恢复差异，检验恢复快慢与立地、气候、管理等因素的关系；关联不直接证明因果。</p></div></article><div class="flow-link"><span>分析结果 + 验证结果 → 综合判断</span></div><article class="unified-card"><div class="unified-heading"><span>07</span><h3>验证与研究输出</h3></div><div class="unified-versions"><div class="version-old"><b>原路线</b><p>原方案结合样点与高分影像目视对照，形成论文及汇报结果。</p></div><div class="version-new"><b>新路线</b><p>事件指标 + 历史影像 + MODIS NPP → 分层精度评价、尺度配对与敏感性分析。<b>产出：</b>精度表、NPP 对照及稳健性报告。</p></div></div><div class="teacher-response"><span>回应老师</span><p>问题 1、8：检验光谱变化的可靠性，比较生产力恢复并报告局限；NPP 不是碳储量直接验证。</p></div></article><div class="flow-link"><span>区域分析和验证共同支持研究结论与管理启示</span></div></div><p class="route-note">光谱指标表征冠层状态；NPP 用于生产力交叉参照，不能直接证明碳储量恢复。各项结果与阈值均需在实施中检验。</p>
-</div></section>
+<section id="route"><div class="wrap"><div class="sec-head reveal"><div class="sec-no">03</div><h2>技术路线</h2><p class="sec-sub">森林扰动状态识别 → 恢复韧性定义 → 韧性指标构建 → 韧性时空分析。</p></div><div class="unified-route">
+<article class="unified-card reveal"><div class="unified-heading"><span>01</span><h3>数据准备与森林范围</h3></div><p>Landsat年度影像、森林覆盖、地形、气候和土地利用资料，经质量控制、年度合成与尺度统一，依据扰动前状态确定研究范围。</p></article>
+<div class="flow-link"><span>年度影像与事件前森林范围</span></div>
+<article class="unified-card reveal"><div class="unified-heading"><span>02</span><h3>识别扰动状态并配对恢复</h3></div><p>核查光谱指数方向与传感器一致性；利用LandTrendr提取完整轨迹、扰动年份、受损低点及后续恢复，记录再次扰动和观测截止。</p></article>
+<div class="flow-link"><span>同次扰动、低点与恢复轨迹</span></div>
+<article class="unified-card reveal"><div class="unified-heading"><span>03</span><h3>定义韧性并构建指标</h3></div><p>以扰动前状态和受损低点为参照，计算五年恢复过程指数；分别报告第五年恢复比例、恢复时间与再次扰动情况。</p></article>
+<div class="flow-link"><span>事件级指标与完整观察窗口</span></div>
+<article class="unified-card reveal"><div class="unified-heading"><span>04</span><h3>时空差异、核查与成果</h3></div><p>按扰动年份建立事件队列并比较森林区域；分析地形、气候和土地利用的关联，进行影像核查、空间分块验证及敏感性检验。</p></article>
+</div><p class="route-note">不同观察窗口、未恢复和再次扰动事件分别记录；未检测到扰动不等于高韧性。</p></div></section>
 
 <!-- ================= 05 八条意见 ================= -->
-<section id="review">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-no">05</div>
-      <h2>八条意见 → 八处改动</h2>
-      <p class="sec-sub">导师的批评不是「文字要润色」，而是指出研究问题本身站不住。以下逐条对应到具体环节。</p>
-    </div>
-
-    <div class="table-wrap reveal">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">意见</th>
-            <th scope="col">问题实质</th>
-            <th scope="col">重构版如何回应</th>
-            <th scope="col">落点</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">1 · 光谱≠碳汇</th><td class="dim">变量越界，光谱是冠层代理</td><td>标题与全文限定为「遥感表征」；碳汇表述收缩为「冠层碳功能」；NPP 只作参照</td><td>07 / 全文</td></tr>
-          <tr><th scope="row">2 · 专家打分</th><td class="dim">权重不可复现、依据自相矛盾</td><td>取消加权合成；改为方向一致性检验 + 多指数集合，用一致性 A 表达检出一致程度</td><td>04</td></tr>
-          <tr><th scope="row">3 · CRE/CSI 缺机理</th><td class="dim">mag/dur 的任意代数组合</td><td>拆成 RL / T90 / C10 / CI / RD 五个有明确含义的量，事件级配对后计算</td><td>03 → 05</td></tr>
-          <tr><th scope="row">4 · 结论无新意</th><td class="dim">只描述格局，未解释过程</td><td>提出三条可检验命题：解耦、复绿≠恢复、恢复债务，逐条绑定检验</td><td>06 → 07</td></tr>
-          <tr><th scope="row">5 · 区域差异</th><td class="dim">分区粗、无统计检验</td><td>五类森林背景分区 + 生存分析 + 二维类型学，报告效应量而非只报 p</td><td>06</td></tr>
-          <tr><th scope="row">6 · 快慢机制</th><td class="dim">未区分生态解释与测量效应</td><td>并列检验六种替代解释（生物遗留、持续胁迫、管理、再扰动、植被替代、测量效应）</td><td>06</td></tr>
-          <tr><th scope="row">7 · 韧性定义</th><td class="dim">概念未界定，指标无法对应</td><td>给出操作性定义，分解为抵抗／恢复／持续三维，明确「对什么扰动、什么功能、什么时间窗」</td><td>05</td></tr>
-          <tr><th scope="row">8 · 参考论文 BCEI</th><td class="dim">易被误读为「造一个新比值」</td><td>借鉴其问题组织方式（先指出单一指标之不足 → 定义可解释量 → 检验 → 主动写局限），不照搬比值形式</td><td>全文</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
+<section id="review"><div class="wrap"><div class="sec-head reveal"><div class="sec-no">04</div><h2>研究问题与方案回应</h2><p class="sec-sub">以可验证的研究设计回应导师意见，实际结论有待完成分析。</p></div><div class="table-wrap reveal"><table><thead><tr><th scope="col">关注点</th><th scope="col">研究方案</th><th scope="col">需要验证</th></tr></thead><tbody>
+<tr><th scope="row">观测对象</th><td>以森林光谱状态表征扰动与恢复</td><td>核查乔木恢复与其他植被复绿</td></tr>
+<tr><th scope="row">指标权重</th><td>不以专家打分确定光谱权重</td><td>检验各指数方向与适用性</td></tr>
+<tr><th scope="row">指标含义</th><td>五年恢复过程指数结合恢复比例、恢复时间与再扰动</td><td>检验基线、阈值与观测窗口</td></tr>
+<tr><th scope="row">区域与原因</th><td>分区比较并分析地形、气候及土地利用关联</td><td>控制事件类型、初始状态和时长；关联不直接代表因果</td></tr>
+<tr><th scope="row">韧性定义</th><td>定义所关注森林属性及其扰动后恢复</td><td>独立影像核查与不确定性分析</td></tr>
+<tr><th scope="row">参考研究</th><td>借鉴问题驱动、指标定义、区域分析和验证的逻辑</td><td>不照搬其他研究的指标或结论</td></tr>
+</tbody></table></div></div></section>
 
 <!-- ================= 06 复核发现 ================= -->
-<section id="findings">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-no">06</div>
-      <h2>本地复核发现的四件事</h2>
-      <p class="sec-sub">
-        以下结论均来自对项目内栅格元数据、重分类记录与分类像元表的只读核验，可逐条追溯。
-        它们共同说明：原版的「84.16%」不能直接继承。
-      </p>
-    </div>
-
-    <div class="findings">
-      <article class="finding reveal">
-        <div class="fnum">FINDING 01</div>
-        <h3>论文公式与实际计算链不是一回事</h3>
-        <p>论文写 CSI = 增益 /（时长 × 损失），但栅格处理记录显示单指数实际为 <code>CRE / Loss</code>，即增益除以损失的平方，全程没有用到 <code>dur</code>；四个指数还是直接相加而非求平均。</p>
-        <div class="fig">论文式：Gain /（dur · Loss）<br>实际链：Gain / Loss²<br>→ 时长信息在最终指标中丢失</div>
-      </article>
-
-      <article class="finding reveal">
-        <div class="fnum">FINDING 02</div>
-        <h3>84.16% 是「没有恢复信号」，不是「极其稳定」</h3>
-        <p>稳定性原始值均值仅 0.000213，88.7% 像元接近零；随后做了一次 <code>(最大值 − 原值) / 最大值</code> 的反向归一化，这批像元被翻成接近 1，落入最高等级。</p>
-        <div class="fig">20,106,322 / 23,889,357 = 84.1643%<br>→ 对应「未检出可配对恢复事件」的像元</div>
-      </article>
-
-      <article class="finding reveal">
-        <div class="fnum">FINDING 03</div>
-        <h3>恢复效率图例方向与定义相反</h3>
-        <p>CRE 重分类的第 1 级区间是 0—0.1048，是数值最低的一档，占 78.30%；但专题图与汇报 PPT 把它标成「极高恢复效率」。而 CRE 全域均值只有 0.0726。</p>
-        <div class="fig">第 1 级（最低值）：18,705,137 像元 = 78.30%<br>图例标注：极高恢复效率 ✗</div>
-      </article>
-
-      <article class="finding reveal">
-        <div class="fnum">FINDING 04</div>
-        <h3>统计分母是全市，不是森林</h3>
-        <p>三项指标的最终掩膜记录均为「北京市区县」，像元数 23,889,357，约合 16,480 km²，与北京全市面积相当；而森林掩膜像元仅 865—887 万。建成区、农田、道路都被计入「稳定性」。</p>
-        <div class="fig">指标分母：23,889,357 像元（全市）<br>森林掩膜：8,652,732 → 8,869,044 像元</div>
-      </article>
-    </div>
-  </div>
-</section>
+<section id="findings"><div class="wrap"><div class="sec-head reveal"><div class="sec-no">05</div><h2>研究设计中的关键核查</h2><p class="sec-sub">以下为实施前的检验任务，并非已经得到的研究结果。</p></div><div class="findings">
+<article class="finding reveal"><div class="fnum">核查 01</div><h3>同次事件配对</h3><p>确认扰动前状态、受损低点及后续恢复属于同一次事件，避免独立选取的增益与损失错配。</p></article>
+<article class="finding reveal"><div class="fnum">核查 02</div><h3>森林范围和观测状态</h3><p>依据扰动前森林状态界定研究对象，区分未检出扰动、观测不足、未恢复及再次受扰。</p></article>
+<article class="finding reveal"><div class="fnum">核查 03</div><h3>恢复而非仅仅复绿</h3><p>利用多时相高分影像等独立资料核查乔木恢复，审慎解释其他植被快速生长形成的信号。</p></article>
+<article class="finding reveal"><div class="fnum">核查 04</div><h3>差异与不确定性</h3><p>比较相近背景和统一窗口，检验参数、阈值、基线、尺度及末端观测对结果的影响。</p></article></div></div></section>
 
 <!-- ================= 07 指标体系 ================= -->
-<section id="metrics">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-no">07</div>
-      <h2>重构版的指标体系</h2>
-      <p class="sec-sub">每个指标只回答一个问题，且都有单位、有边界、可被反驳。</p>
-    </div>
-
-    <div class="formula-grid reveal">
-      <div class="formula">
-        <div class="fname">相对受损程度 RL</div>
-        <div class="fexp">RL = (V_pre − V_min) / V_pre</div>
-        <p class="fdesc">扰动造成的冠层损失占扰动前水平的比例。注意：这是「系统受影响的程度」，不等于外界施加的扰动强度。</p>
-      </div>
-      <div class="formula">
-        <div class="fname">恢复时间 T90</div>
-        <div class="fexp">T90 = t(V90) − t_min</div>
-        <p class="fdesc">V90 = V_min + 0.9·(V_pre − V_min)，即弥补 90% 初始亏缺所需年数。注意它不是「回到扰动前数值的 90%」。</p>
-      </div>
-      <div class="formula">
-        <div class="fname">固定窗口恢复完整度 C10</div>
-        <div class="fexp">C_H = min[1, (v(t_min + H) − V_min) / (V_pre − V_min)]</div>
-        <p class="fdesc">受损后 H 年内恢复了多少。H 取 5 年与 10 年两档，必须配齐观察长度，不能拿末年值混合比较。</p>
-      </div>
-      <div class="formula">
-        <div class="fname">复合扰动比 CI</div>
-        <div class="fexp">CI = 未恢复即再扰动的事件数 / 总事件数</div>
-        <p class="fdesc">反映「恢复过程被打断」的比例，是恢复陷阱的直接度量。</p>
-      </div>
-      <div class="formula">
-        <div class="fname">恢复债务 RD</div>
-        <div class="fexp">RD = (1 − C_end) × RL</div>
-        <p class="fdesc">到观测末期仍未恢复的「状态亏缺」。使用光谱变量时应称「光谱状态亏缺」，不称碳债务。</p>
-      </div>
-      <div class="formula">
-        <div class="fname">恢复成功概率 P(H)</div>
-        <div class="fexp">P_z(H) = P(T90 ≤ H 且 T90 &lt; T_再次扰动)</div>
-        <p class="fdesc">分区 z 内，规定年限内且在下一次扰动到来之前完成恢复的概率。同时含恢复能力与扰动时序，不需主观权重。</p>
-      </div>
-    </div>
-
-    <div class="aside-note reveal" style="margin-top:28px;max-width:78ch">
-      <h4>写作纪律</h4>
-      <p>① 韧性只在<strong>被扰动过</strong>的像元上计算，未扰动像元标 N/A，不能算作「极高稳定」。</p>
-      <p>② 报告每个分区的样本量与事件数，不能只给百分比。</p>
-      <p>③ 恢复时间必须处理右删失，观测结束仍未恢复的事件保留为「尚未完全观测」，不能删除、也不能赋 0。</p>
-      <p>④ 全文对碳的表述只允许三种：冠层碳功能代理 / NPP 独立参照 / 带不确定性的量级估计。</p>
-    </div>
-  </div>
-</section>
+<section id="metrics"><div class="wrap"><div class="sec-head reveal"><div class="sec-no">06</div><h2>恢复韧性指标体系</h2><p class="sec-sub">以事件为单位，先定义参照状态，再计算恢复指标；各项指标须通过验证。</p></div><div class="formula-grid reveal">
+<div class="formula"><div class="fname">受损程度</div><p class="fdesc">比较扰动前稳定状态与受损低点，描述观测变量下降的幅度。状态变化不直接等于外部扰动强度。</p></div>
+<div class="formula"><div class="fname">五年恢复过程指数</div><p class="fdesc">以扰动前状态和受损低点为参照，分别确定受损后五年各年的相对恢复程度，再取五年平均值。低于受损低点按零计，超过扰动前状态按完全恢复计。数值越高，五年内平均恢复程度越高。</p></div>
+<div class="formula"><div class="fname">第五年恢复比例</div><p class="fdesc">以初始受损幅度为参照，计算受损后第五年已弥补的比例，补充说明固定时点的恢复程度。</p></div>
+<div class="formula"><div class="fname">恢复时间</div><p class="fdesc">从受损低点起，达到弥补初始损失百分之九十所需的时间；阈值与基线需要进行敏感性检验。</p></div>
+<div class="formula"><div class="fname">恢复前再次扰动</div><p class="fdesc">记录恢复达标之前是否出现新的可检测扰动，区分恢复过程被打断与森林自身恢复表现。</p></div></div>
+<div class="aside-note reveal" style="margin-top:28px;max-width:78ch"><h4>适用条件</h4><p>五年指数仅用于初始损失超过检测误差且具有完整五年观测的事件。未恢复、再次受扰和观测不足分别记录，不以零值代替；以光谱状态构建的指标不能单独代表全部森林属性。再次扰动发生的时间和处理方式需在分析中说明。</p></div></div></section>
 
 <!-- ================= 08 数据与参数 ================= -->
-<section id="data">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-no">08</div>
-      <h2>数据、参数与环境</h2>
-      <p class="sec-sub">所有输入均可公开获取；所有参数均需在论文中列明。</p>
-    </div>
-
-    <div class="table-wrap reveal">
-      <table>
-        <thead>
-          <tr><th scope="col">数据 / 工具</th><th scope="col">分辨率 / 版本</th><th scope="col">时段</th><th scope="col">来源</th><th scope="col">在本项目中的作用</th></tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">Landsat 5 TM / 7 ETM+ / 8 OLI</th><td>30 m</td><td>2001—2023</td><td>USGS / GEE</td><td>构建四指数年度时间序列，是全部指标的原始观测</td></tr>
-          <tr><th scope="row">CLCD 中国土地覆盖</th><td>30 m</td><td>2000—2023</td><td>武汉大学</td><td>提取森林范围，并按事件前状态回溯掩膜</td></tr>
-          <tr><th scope="row">MOD17A3HGF NPP</th><td>500 m</td><td>2001—2024</td><td>NASA</td><td>生产力层面的独立参照，检验「复绿是否等于恢复」</td></tr>
-          <tr><th scope="row">森林资源清查样点</th><td>点</td><td>第八次清查</td><td>项目组整理</td><td>变化识别的独立核查（实测 116 条记录）</td></tr>
-          <tr><th scope="row">OSM 行政边界与水系</th><td>矢量</td><td>—</td><td>OpenStreetMap</td><td>研究区界定与水域剔除</td></tr>
-          <tr><th scope="row">DEM</th><td>30 m</td><td>—</td><td>SRTM</td><td>山地／平原分区与立地变量</td></tr>
-          <tr><th scope="row">Google Earth Engine</th><td>云平台</td><td>—</td><td>GEE</td><td>时序合成、指数计算与 LandTrendr 分段</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="table-wrap reveal" style="margin-top:22px">
-      <table>
-        <thead>
-          <tr><th scope="col">LandTrendr 参数</th><th scope="col">建议取值</th><th scope="col">作用</th></tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">maxSegments</th><td>6—8</td><td>允许的最大分段数，决定能识别几次扰动</td></tr>
-          <tr><th scope="row">spikeThreshold</th><td>0.9</td><td>抑制单年突变的去噪强度</td></tr>
-          <tr><th scope="row">vertexCountOvershoot</th><td>3</td><td>初始顶点数可超出最大分段的数量</td></tr>
-          <tr><th scope="row">preventOneYearRecovery</th><td>TRUE</td><td>避免把单年波动误判为恢复</td></tr>
-          <tr><th scope="row">recoveryThreshold</th><td>0.25—0.5</td><td>恢复速率的合理性阈值</td></tr>
-          <tr><th scope="row">pvalThreshold</th><td>0.05</td><td>拟合显著性检验</td></tr>
-          <tr><th scope="row">bestModelProportion</th><td>0.75</td><td>简单模型被选中的比例要求</td></tr>
-          <tr><th scope="row">minObservationsNeeded</th><td>6</td><td>参与拟合的最少观测年数</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="data-note reveal">注：以上参数取自国内同类区域研究的常用组合，本项目实际取值需与原始 GEE 脚本核对后写定，并做敏感性分析。</p>
-  </div>
-</section>
+<section id="data"><div class="wrap"><div class="sec-head reveal"><div class="sec-no">07</div><h2>数据与验证</h2><p class="sec-sub">以现有项目资料为基础，结合可获得的数据开展核查。</p></div><div class="table-wrap reveal"><table><thead><tr><th scope="col">数据或工具</th><th scope="col">用途</th><th scope="col">核查重点</th></tr></thead><tbody>
+<tr><th scope="row">Landsat年度影像</th><td>构建森林光谱时间序列</td><td>质量控制、年度合成与传感器一致性</td></tr>
+<tr><th scope="row">土地覆盖与森林类型</th><td>界定扰动前森林范围及背景</td><td>区分森林恢复、新造林与用途转换</td></tr>
+<tr><th scope="row">地形、气候及土地利用</th><td>区域分组和关联分析</td><td>时空尺度匹配，避免将相关性直接解释为因果</td></tr>
+<tr><th scope="row">高分辨率影像与调查资料</th><td>分层核查事件年份、变化类型与恢复状态</td><td>样本独立性、覆盖范围与时间匹配</td></tr>
+<tr><th scope="row">LandTrendr及分析工具</th><td>提取变化轨迹与同次事件</td><td>记录参数并检验基线、阈值与敏感性</td></tr>
+</tbody></table></div></div></section>
 
 </main>
 
@@ -353,4 +141,3 @@
 <script src="assets/js/main.js"></script>
 </body>
 </html>
-
